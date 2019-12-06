@@ -53,6 +53,10 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
         switch (v.getId()){
             case R.id.btnLogin:
                 checkValidation();
+                if(etEmail.getText().toString().equals("admin@gmail.com") && etPassword.getText().toString().equals("admin")){
+                    Intent intent = new Intent(LoginForm.this, MainActivity.class);
+                    startActivity(intent);
+                }
                 break;
 
 
@@ -70,11 +74,11 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
         String getPassword = etPassword.getText().toString();
 
         if(TextUtils.isEmpty(etEmail.getText()) || etEmail.length() == 0){
-         Toast.makeText(getApplicationContext(), "Enter your email", Toast.LENGTH_SHORT).show();
+         Toast.makeText(getApplicationContext(), "Please enter your email", Toast.LENGTH_SHORT).show();
 
             return;
         }else if(TextUtils.isEmpty(etPassword.getText())){
-            etPassword.setError("Plase enter your password");
+            etPassword.setError("Please enter your password");
             return;
         }
 
