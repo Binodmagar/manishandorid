@@ -1,18 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@color/dashboardtop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvIncome"
+            android:text="Income"
+            style="@style/calender"/>
+        <!--        <view-->
+        <!--            android:layout_width="3px"-->
+        <!--            android:layout_height="fill_parent"-->
+        <!--            android:background="@color/white" />-->
+        <TextView
+            android:id="@+id/tvBalance"
+            android:text="Balance"
+            style="@style/calender"/>
+        <TextView
+            android:id="@+id/tvExpense"
+            android:text="Expense"
+            style="@style/calender"/>
+    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <CalendarView
+        android:id="@+id/cvCalender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/CalenderViewCustom"
+        android:dateTextAppearance="@style/CalenderViewDateCustomText"
+        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText" />
+
+    <TextView
+        android:id="@+id/tvToday"
+        android:textColor="@color/white"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:drawablePadding="8dp"
+        android:drawableLeft="@drawable/trans"
+        android:text="Today's transactions"
+        android:background="#06A55A"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+
+
+    <TextView
+        android:id="@+id/tvTodayTrans"
+        android:textColor="#06A55A"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:drawablePadding="8dp"
+        android:text="No transactions for today. Tap here to start addding expenses or incomes."
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+
+</LinearLayout>
