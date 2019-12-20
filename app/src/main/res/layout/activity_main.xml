@@ -53,14 +53,14 @@
         android:layout_width="match_parent"/>
 
 
-    <TextView
+    <EditText
         android:id="@+id/tvTodayTrans"
-        android:textColor="#06A55A"
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:drawablePadding="8dp"
-        android:text="No transactions for today. Tap here to start addding expenses or incomes."
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"/>
+        android:drawablePadding="8dp"
+        android:padding="10dp"
+        android:text="No transactions for today. Tap here to start addding expenses or incomes."
+        android:textColor="#06A55A"
+        android:textStyle="bold" />
 
 </LinearLayout>
