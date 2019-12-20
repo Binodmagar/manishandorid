@@ -35,8 +35,10 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         if(email.equals("admin@gmail.com") && password.equals("admin")){
             Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+            startActivity(intent);
         }else{
             Intent intent = new Intent(SplashScreenActivity.this, LoginForm.class);
+            startActivity(intent);
         }
     }
 }
