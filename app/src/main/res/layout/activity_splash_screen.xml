@@ -7,15 +7,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="@color/background"
     tools:context=".SplashScreenActivity">
+
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="140dp"
-        android:layout_height="140dp"/>
+        android:layout_gravity="center"
+        android:layout_width="182dp"
+        android:layout_height="140dp"
+        app:srcCompat="@drawable/logo" />
 
     <TextView
-
+        android:id="@+id/textView"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:layout_marginTop="12dp"
+        android:text="Welcome to Expense Tracker" />
 </LinearLayout>
