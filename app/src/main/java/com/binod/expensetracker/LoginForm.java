@@ -2,7 +2,9 @@ package com.binod.expensetracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.SharedElementCallback;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.icu.util.UniversalTimeScale;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -56,6 +58,7 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
                 if(etEmail.getText().toString().equals("admin@gmail.com") && etPassword.getText().toString().equals("admin")){
                     Intent intent = new Intent(LoginForm.this, MainActivity.class);
                     startActivity(intent);
+                    SaveUserandPass();
                 }
                 break;
 
@@ -95,5 +98,14 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
 
 //        else if(!m.find())
 
+    }
+
+    private void SaveUserandPass(){
+        SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("Email", etEmail.getText().toString());
+        editor.putString("Password",etPassword.getText().toString());
+        editor.commit();
     }
 }
