@@ -23,6 +23,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(SplashScreenActivity.this, LoginForm.class);
                 startActivity(intent);
+                checkUser();
                 finish();
             }
         },1000);

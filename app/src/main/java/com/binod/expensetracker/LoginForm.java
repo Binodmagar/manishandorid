@@ -58,7 +58,7 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
                 if(etEmail.getText().toString().equals("admin@gmail.com") && etPassword.getText().toString().equals("admin")){
                     Intent intent = new Intent(LoginForm.this, MainActivity.class);
                     startActivity(intent);
-                    SaveUserandPass();
+                    SaveEmailandPass();
                 }
                 break;
 
@@ -100,7 +100,7 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
 
     }
 
-    private void SaveUserandPass(){
+    private void SaveEmailandPass(){
         SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
