@@ -14,6 +14,9 @@
     <string name="already_user">Already have Account? Login here.</string>
     <string name="registered_emailid">Please enter your Registered Email Id below:</string>
     <string name="submit">SUBMIT</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!--    <string name="back">BACK</string>-->
     <!--    <string name="hide_pwd">Hide Password</string>-->
     <!--    <string name="show_pwd">Show Password</string>-->
