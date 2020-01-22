@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".TransactionsActivity">
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:textColor="@color/white"
+        android:padding="10dp"
+
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:drawablePadding="8dp"
+        android:background="@color/dashboardtop"
+        android:layout_height="60dp"
+        android:layout_width="match_parent"/>
+    <TextView
+        android:id="@+id/tvToday"
+        android:textColor="@color/white"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:drawablePadding="8dp"
+        android:drawableLeft="@drawable/trans"
+        android:text="Today's transactions"
+        android:background="#06A55A"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
