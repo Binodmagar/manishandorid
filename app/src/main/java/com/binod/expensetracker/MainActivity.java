@@ -9,8 +9,10 @@ import android.graphics.Color;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.CalendarView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.binod.adapter.ViewPagerAdapter;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private CalendarView calendarView;
+    private TextView tvAddIncome, tvAddExpense;
 
 
     @Override
@@ -38,6 +41,35 @@ public class MainActivity extends AppCompatActivity {
         //binding
         viewPager = findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tabLayout);
+        tvAddIncome = findViewById(R.id.tvAddIncome);
+        tvAddExpense = findViewById(R.id.tvAddExpense);
+
+        tvAddIncome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+
+                Intent intent = new Intent(MainActivity.this, AddIncomeActivity.class);
+                intent.putExtra("currentDate", currentDate);
+                startActivity(intent);
+            }
+        });
+
+
+        tvAddExpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+
+                Intent intent = new Intent(MainActivity.this, AddExpenseActivity.class);
+                intent.putExtra("currentDate", currentDate);
+                startActivity(intent);
+            }
+        });
+
+
 
 
         //for top bar design
