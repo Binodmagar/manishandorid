@@ -14,10 +14,10 @@ public class AddExpenseActivity extends AppCompatActivity {
     Spinner spExpense;
 
     public static final String Expense[] = {
-            "Pokhara",
-            "Kathmandu",
-            "Butwal",
-            "Baglung",
+            "Food",
+            "Clothes",
+            "General Expenses",
+            "Medical",
     };
 
     @Override

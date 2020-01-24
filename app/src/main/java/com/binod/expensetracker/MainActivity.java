@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
                 String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-
                 Intent intent = new Intent(MainActivity.this, AddIncomeActivity.class);
                 intent.putExtra("currentDate", currentDate);
                 startActivity(intent);
@@ -90,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
 //                Calendar calendar = Calendar.getInstance();
               String date = (month + 1) + "/" + dayOfMonth + "/" + year;
-
               Log.d(date,"onSelectedDayChange: MMM d, ''yyyy: " + date);
 
               Intent intent = new Intent(MainActivity.this, TransactionsActivity.class);

@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".AddExpenseActivity">
-
+    android:layout_height="match_parent"
+    tools:context=".AddIncomeActivity">
 
     <TextView
         android:id="@+id/tvDateAE"
@@ -21,16 +20,22 @@
         android:layout_width="match_parent"/>
 
 
+
     <EditText
-        android:id="@+id/etIncome"
+        android:id="@+id/etExpenseAE"
+        android:layout_width="359dp"
+        android:layout_height="54dp"
+        android:background="@drawable/edittext"
         android:hint="0 NPR"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:textSize="20sp"
-        android:textColor="#ffffff"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
+
+
 
     <TextView
         android:layout_marginTop="20dp"
@@ -53,16 +58,28 @@
         />
 
     <EditText
-        android:id="@+id/etNoteAI"
-        android:text="fdsfsdfdfjsdfkdsjfksdksdsdfklsdf"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:id="@+id/etNoteAE"
+        android:layout_width="359dp"
+        android:layout_height="0dp"
+        android:background="@drawable/addnote"
+        android:hint="Add note .."
+        android:layout_weight="1"
+        android:gravity="top"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="20sp"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
 
     <Button
+        android:id="@+id/btnSaveAE"
         android:text="Save"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:elevation="10dp"

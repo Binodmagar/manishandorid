@@ -14,10 +14,8 @@ public class AddIncomeActivity extends AppCompatActivity {
     TextView tvDateAI;
 
     public static final String Income[] = {
-            "Pokhara",
-            "Kathmandu",
-            "Butwal",
-            "Baglung",
+            "Salary",
+            "Bonous",
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {

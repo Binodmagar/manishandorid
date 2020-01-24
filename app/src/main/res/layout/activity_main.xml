@@ -65,8 +65,10 @@
     </LinearLayout>
 
 
+
+
     <CalendarView
-        android:background="#F9FAF9"
+        android:background="#C5DDB2"
         android:id="@+id/cvCalender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
