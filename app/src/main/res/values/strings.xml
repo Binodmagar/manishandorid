@@ -6,7 +6,8 @@
     <string name="login">LOGIN</string>
     <string name="newUser">Do not have account? Sign Up here.</string>
     <string name="forgot">Forgot password?</string>
-    <string name="fullName">Full Name</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
     <string name="mobileNumber">Mobile Number</string>
     <string name="confirmPassword">Confirm Password</string>
     <string name="terms_conditions">By clicking SignUp you agree all the Terms and Conditions.</string>
