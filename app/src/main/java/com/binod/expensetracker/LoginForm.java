@@ -21,11 +21,11 @@ import java.util.regex.Pattern;
 
 public class LoginForm extends AppCompatActivity implements View.OnClickListener {
 
-    private static View view;
-    public static EditText etEmail, etPassword;
-    private static Button btnLogin;
-    private static TextView tvCreateAccount;
-    private static Animation animation;
+      View view;
+      EditText etEmail, etPassword;
+      Button btnLogin;
+      TextView tvCreateAccount;
+      Animation animation;
 
     public void Login_Fragment(){
 

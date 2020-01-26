@@ -16,8 +16,16 @@
         android:textSize="25sp"
         android:textStyle="bold" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgProfile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:src="@drawable/imgprofile"/>
+
     <EditText
-        android:id="@+id/etFullName"
+        android:id="@+id/etFirstName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -25,8 +33,51 @@
         android:drawableLeft="@drawable/fullname"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
-        android:hint="@string/fullName"
+        android:hint="@string/firstName"
         android:inputType="textCapWords"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
+    <EditText
+        android:id="@+id/etLastName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/fullname"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:hint="@string/lastName"
+        android:inputType="textCapWords"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
+
+    <EditText
+        android:id="@+id/etMobileNumber"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/phone"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:hint="@string/mobileNumber"
+        android:inputType="phone"
         android:padding="10dp"
         android:singleLine="true"
         android:textColor="@color/white"
@@ -60,27 +111,7 @@
         android:layout_height="1px"
         android:background="@color/white_greyish" />
 
-    <EditText
-        android:id="@+id/etMobileNumber"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/phone"
-        android:drawablePadding="8dp"
-        android:gravity="center_vertical"
-        android:hint="@string/mobileNumber"
-        android:inputType="phone"
-        android:padding="10dp"
-        android:singleLine="true"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textSize="16sp" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1px"
-        android:background="@color/white_greyish" />
 
     <EditText
         android:id="@+id/etRpassword"
