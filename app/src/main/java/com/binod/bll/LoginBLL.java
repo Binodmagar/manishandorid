@@ -15,6 +15,7 @@ public class LoginBLL {
 
     boolean isSuccess = false;
 
+
     public boolean checkUser(String email, String password) {
 
         UserLoginAPI userLoginAPI = Url.getInstance().create(UserLoginAPI.class);
@@ -22,7 +23,7 @@ public class LoginBLL {
 
         try {
             Response<SignUpResponse> loginResponse = userCall.execute();
-            if (loginResponse.isSuccessful() && loginResponse.body().getStatus().equals("Login success!")) {
+            if (loginResponse.isSuccessful() && loginResponse.body().getStatus().equals("Login success")) {
                 Url.token += loginResponse.body().getToken();
 
                 isSuccess = true;
