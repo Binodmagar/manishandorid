@@ -21,25 +21,32 @@ public class SplashScreenActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this, LoginForm.class);
-                startActivity(intent);
-                checkUser();
-                finish();
+               SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
+               Boolean agreed = sharedPreferences.getBoolean("agreed", false);
+
+               if(agreed.equals(true)){
+                   Toast.makeText(SplashScreenActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                   Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                   startActivity(intent);
+               }else {
+                   Intent intent = new Intent(SplashScreenActivity.this, LoginForm.class);
+                   startActivity(intent);
+               }
             }
-        },1000);
+        },2000);
     }
 
-    private void checkUser(){
-        SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
-        String email = sharedPreferences.getString("Email", "");
-        String password = sharedPreferences.getString("Password", "");
-
-        if(email.equals("admin@gmail.com") && password.equals("admin")){
-            Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-            startActivity(intent);
-        }else{
-            Intent intent = new Intent(SplashScreenActivity.this, LoginForm.class);
-            startActivity(intent);
-        }
-    }
+//    private void checkUser(){
+//        SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
+//        String email = sharedPreferences.getString("Email", "");
+//        String password = sharedPreferences.getString("Password", "");
+//
+//        if(email.equals("admin@gmail.com") && password.equals("admin")){
+//            Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+//            startActivity(intent);
+//        }else{
+//            Intent intent = new Intent(SplashScreenActivity.this, LoginForm.class);
+//            startActivity(intent);
+//        }
+//    }
 }
