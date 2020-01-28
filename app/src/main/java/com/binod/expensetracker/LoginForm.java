@@ -2,30 +2,28 @@ package com.binod.expensetracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.SharedElementCallback;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.icu.util.UniversalTimeScale;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.binod.bll.LoginBLL;
+import com.binod.strictmode.StrictModeClass;
+
 
 public class LoginForm extends AppCompatActivity implements View.OnClickListener {
 
-      View view;
+
       EditText etEmail, etPassword;
       Button btnLogin;
       TextView tvCreateAccount;
-      Animation animation;
+
 
     public void Login_Fragment(){
 
@@ -47,21 +45,20 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
         btnLogin.setOnClickListener(this);
         tvCreateAccount.setOnClickListener(this);
 
-//      animation = AnimationUtils.loadAnimation() ;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnLogin:
-                checkValidation();
-                if(etEmail.getText().toString().equals("admin@gmail.com") && etPassword.getText().toString().equals("admin")){
-                    Intent intent = new Intent(LoginForm.this, MainActivity.class);
-                    startActivity(intent);
+                if(checkValidation()){
+                    login();
                     SaveEmailandPass();
+                }else{
+                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 break;
-
 
             case R.id.tvCreateAccount:
                 Intent intent = new Intent(LoginForm.this, RegisterActivity.class);
@@ -71,33 +68,34 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
         }
     }
 
-    private  void checkValidation(){
-        //get email and password
-        String getEmail = etEmail.getText().toString();
-        String getPassword = etPassword.getText().toString();
-
+    private   boolean checkValidation(){
+        boolean status = true;
         if(TextUtils.isEmpty(etEmail.getText()) || etEmail.length() == 0){
-         Toast.makeText(getApplicationContext(), "Please enter your email", Toast.LENGTH_SHORT).show();
-
-            return;
+         etEmail.setError("Please enter email");
+         etEmail.requestFocus();
+            status = false;
         }else if(TextUtils.isEmpty(etPassword.getText())){
             etPassword.setError("Please enter your password");
-            return;
+            etPassword.requestFocus();
+            status = false;
         }
+        return status;
+    }
 
+    private void login() {
+        String email = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
 
-        //check pattern for email
-//        Pattern p = Pattern.compile();
-//        Matcher m = p.matcher(getEmail);
-
-        //check if email and password is empty or not
-        if(getEmail.equals("") || getEmail.length() == 0
-        || getPassword.equals("") || getPassword.length() == 0){
-            Toast.makeText(getApplicationContext(), "Enter Both credentials.", Toast.LENGTH_SHORT).show();
+        LoginBLL loginBLL = new LoginBLL();
+        StrictModeClass.StrictMode();
+        if(loginBLL.checkUser(email, password)){
+            Intent intent = new Intent(LoginForm.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }else {
+            Toast.makeText(this, "Either Username or password is incorrect", Toast.LENGTH_SHORT).show();
+            etEmail.requestFocus();
         }
-
-//        else if(!m.find())
-
     }
 
     private void SaveEmailandPass(){

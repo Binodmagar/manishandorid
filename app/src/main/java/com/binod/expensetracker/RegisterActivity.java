@@ -17,6 +17,8 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private CircleImageView imgProfile;
     private  Button btnSignUp;
     private  TextView tvAlreadyUser;
+    private CheckBox cbAgree;
     private  EditText etFirstName, etLastName, etMobileNumber, etRemail, etRpassword, etConfirmPassword;
     String imagePath;
     String imgName = "";
@@ -65,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         etRemail = findViewById(R.id.etRemail);
         etRpassword = findViewById(R.id.etRpassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
+        cbAgree = findViewById(R.id.cbAgree);
 
         //listener
         btnSignUp.setOnClickListener(this);
@@ -130,6 +134,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             etRpassword.requestFocus();
             status = false;
         }
+        cbAgree.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                cbAgree.setTag(isChecked? true: false);
+            }
+        });
         return status;
     }
 
@@ -196,8 +206,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String mobileNumber = etMobileNumber.getText().toString();
         String email = etRemail.getText().toString();
         String password = etRpassword.getText().toString();
+        boolean agree = Boolean.parseBoolean(String.valueOf(cbAgree.isChecked()? true:false));
 
-        UserLogin userLogin = new UserLogin(firstName, lastName, mobileNumber, email, password, imgName);
+        UserLogin userLogin = new UserLogin(firstName, lastName, mobileNumber, email, password, agree, imgName);
 
         UserLoginAPI userLoginAPI = Url.getInstance().create(UserLoginAPI.class);
         Call<SignUpResponse> signUpResponseCall = userLoginAPI.registerUser(userLogin);
