@@ -88,16 +88,20 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"/>
 
-
-    <TextView
-        android:id="@+id/tvTodayTrans"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTodayHome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawablePadding="8dp"
-        android:padding="10dp"
-        android:text="No transactions for today. Tap here to start addding expenses or incomes."
-        android:textColor="#06A55A"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvTodayTrans"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:drawablePadding="8dp"-->
+<!--        android:padding="10dp"-->
+<!--        android:text="No transactions for today. Tap here to start addding expenses or incomes."-->
+<!--        android:textColor="#06A55A"-->
+<!--        android:textStyle="bold" />-->
 
 
 </LinearLayout>

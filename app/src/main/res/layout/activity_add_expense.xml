@@ -19,10 +19,23 @@
         android:layout_height="60dp"
         android:layout_width="match_parent"/>
 
+    <EditText
+        android:id="@+id/etNameAE"
+        android:layout_width="359dp"
+        android:layout_height="54dp"
+        android:background="@drawable/edittext"
+        android:hint="Name"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="20sp"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
 
 
     <EditText
-        android:id="@+id/etExpenseAE"
+        android:id="@+id/etAmountAE"
         android:layout_width="359dp"
         android:layout_height="54dp"
         android:background="@drawable/edittext"
@@ -52,7 +65,27 @@
     <Spinner
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:id="@+id/spExpense"
+        android:id="@+id/spCategoryAE"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Choose Account..."
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+    <Spinner
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/spAccountAE"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         />
