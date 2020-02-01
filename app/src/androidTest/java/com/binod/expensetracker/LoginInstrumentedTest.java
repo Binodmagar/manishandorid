@@ -31,7 +31,7 @@ public class LoginInstrumentedTest {
         onView(withId(R.id.etPassword)).perform(typeText("admin12345"),closeSoftKeyboard());
         onView(withId(R.id.btnLogin)).perform(click());
 
-        onView(withId(R.id.tvTodayTrans))
+        onView(withId(R.id.tvToday))
                 .check(matches(isDisplayed()));
     }
 }
