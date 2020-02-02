@@ -79,7 +79,7 @@ public class AddIncomeActivity extends AppCompatActivity {
     public boolean checkValidation(){
         boolean status = true;
         if(TextUtils.isEmpty(etNameAI.getText().toString())){
-            etNameAI.setError("Please enter expense name!");
+            etNameAI.setError("Please enter income name!");
             etNameAI.requestFocus();
             status = false;
         }
