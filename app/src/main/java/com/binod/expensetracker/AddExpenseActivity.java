@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.binod.api.ExpenseAPI;
+import com.binod.bll.ExpenseBLL;
 import com.binod.model.Expense;
 import com.binod.url.Url;
 
@@ -109,25 +110,38 @@ public class AddExpenseActivity extends AppCompatActivity {
         String date = tvDateAE.getText().toString();
         String description = etNoteAE.getText().toString();
 
-        Expense expense = new Expense(name, amount, category, account, date, description);
-        ExpenseAPI expenseAPI = Url.getInstance().create(ExpenseAPI.class);
-        Call<Expense> expenseCall = expenseAPI.addProduct(expense);
+        ExpenseBLL expenseBLL = new ExpenseBLL(name, amount, category, account, date, description);
 
-        expenseCall.enqueue(new Callback<com.binod.model.Expense>() {
-            @Override
-            public void onResponse(Call<com.binod.model.Expense> call, Response<com.binod.model.Expense> response) {
-                if(!response.isSuccessful()){
-                    Toast.makeText(AddExpenseActivity.this, "Cannot add expense", Toast.LENGTH_SHORT).show();
-                    return;
-                }else {
-                    Toast.makeText(AddExpenseActivity.this, "Expense added successfully!", Toast.LENGTH_SHORT).show();
-                }
-            }
+        if(expenseBLL.addExpense()){
 
-            @Override
-            public void onFailure(Call<com.binod.model.Expense> call, Throwable t) {
-                Toast.makeText(AddExpenseActivity.this, "Error code" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+            Toast.makeText(AddExpenseActivity.this, "Expense Added successfully", Toast.LENGTH_SHORT).show();
+            etNameAE.setText("");
+            etAmountAE.setText("");
+            etNoteAE.setText("");
+        }else{
+            Toast.makeText(AddExpenseActivity.this, "Cannot add expense", Toast.LENGTH_SHORT).show();
+
+        }
+
+//        Expense expense = new Expense(name, amount, category, account, date, description);
+//        ExpenseAPI expenseAPI = Url.getInstance().create(ExpenseAPI.class);
+//        Call<Expense> expenseCall = expenseAPI.addProduct(expense);
+//
+//        expenseCall.enqueue(new Callback<com.binod.model.Expense>() {
+//            @Override
+//            public void onResponse(Call<com.binod.model.Expense> call, Response<com.binod.model.Expense> response) {
+//                if(!response.isSuccessful()){
+//                    Toast.makeText(AddExpenseActivity.this, "Cannot add expense", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }else {
+//                    Toast.makeText(AddExpenseActivity.this, "Expense added successfully!", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<com.binod.model.Expense> call, Throwable t) {
+//                Toast.makeText(AddExpenseActivity.this, "Error code" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 }

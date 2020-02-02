@@ -40,6 +40,7 @@
         android:layout_height="54dp"
         android:background="@drawable/edittext"
         android:hint="0 NPR"
+        android:inputType="number"
         android:paddingLeft="10dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
