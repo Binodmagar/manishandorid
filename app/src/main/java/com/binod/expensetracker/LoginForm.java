@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -99,6 +98,7 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
     }
 
     private void SaveEmailandPass(){
+
         SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
