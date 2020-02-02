@@ -22,11 +22,26 @@
 
 
     <EditText
-        android:id="@+id/etIncome"
+        android:id="@+id/etNameAI"
+        android:layout_width="359dp"
+        android:layout_height="54dp"
+        android:background="@drawable/edittextincome"
+        android:hint="Name"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="20sp"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
+
+    <EditText
+        android:id="@+id/etAmountAI"
         android:layout_width="359dp"
         android:layout_height="54dp"
         android:background="@drawable/edittextincome"
         android:hint="0 NPR"
+        android:inputType="number"
         android:paddingLeft="10dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
@@ -52,7 +67,27 @@
     <Spinner
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:id="@+id/spIncome"
+        android:id="@+id/spIncomeAI"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Choose Account..."
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+    <Spinner
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/spAccountAI"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         />
@@ -75,6 +110,7 @@
         android:layout_marginRight="10dp"/>
 
     <Button
+        android:id="@+id/btnSaveAI"
         android:text="Save"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="15dp"
