@@ -85,8 +85,8 @@ public class AddExpenseActivity extends AppCompatActivity {
     private boolean checkValidation(){
         boolean status = true;
         if(TextUtils.isEmpty(etNameAE.getText().toString())){
-            etNoteAE.setError("Please enter expense name!");
-            etAmountAE.requestFocus();
+            etNameAE.setError("Please enter expense name!");
+            etNameAE.requestFocus();
             status = false;
         }
         if(TextUtils.isEmpty(etAmountAE.getText().toString())){
@@ -113,7 +113,6 @@ public class AddExpenseActivity extends AppCompatActivity {
         ExpenseBLL expenseBLL = new ExpenseBLL(name, amount, category, account, date, description);
 
         if(expenseBLL.addExpense()){
-
             Toast.makeText(AddExpenseActivity.this, "Expense Added successfully", Toast.LENGTH_SHORT).show();
             etNameAE.setText("");
             etAmountAE.setText("");

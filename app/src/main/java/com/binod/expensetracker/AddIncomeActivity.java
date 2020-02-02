@@ -4,11 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.binod.bll.ExpenseBLL;
+import com.binod.bll.IncomeBLL;
 
 public class AddIncomeActivity extends AppCompatActivity {
 
@@ -53,6 +59,64 @@ public class AddIncomeActivity extends AppCompatActivity {
         String date = incommingIntent.getStringExtra("currentDate");
         tvDateAI.setText(date);
 
+        btnSaveAI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkValidation()){
+                    addIncome();
+                    finish();
+                }else{
+                    Toast.makeText(AddIncomeActivity.this, "Please check input credentials again", Toast.LENGTH_SHORT).show();
+                    etNameAI.requestFocus();
+                    return;
+                }
+            }
+        });
+
+    }
+
+
+    public boolean checkValidation(){
+        boolean status = true;
+        if(TextUtils.isEmpty(etNameAI.getText().toString())){
+            etNameAI.setError("Please enter expense name!");
+            etNameAI.requestFocus();
+            status = false;
+        }
+        if(TextUtils.isEmpty(etAmountAI.getText().toString())){
+            etAmountAI.setError("Please enter amount!");
+            etAmountAI.requestFocus();
+            status = false;
+        }
+        if(TextUtils.isEmpty(etNoteAI.getText().toString())){
+            etNoteAI.setError("Please enter note");
+            etNoteAI.requestFocus();
+            status = false;
+        }
+        return status;
+    }
+
+    public void addIncome(){
+        String name = etNameAI.getText().toString();
+        int amount = Integer.parseInt(etAmountAI.getText().toString());
+        String income = spIncomeAI.getSelectedItem().toString();
+        String account = spAccountAI.getSelectedItem().toString();
+        String date = tvDateAI.getText().toString();
+        String note = etNoteAI.getText().toString();
+
+
+        IncomeBLL incomeBLL = new IncomeBLL(name, amount, income, account, date, note);
+
+        if(incomeBLL.addIncome()){
+            etNameAI.setText("");
+            etAmountAI.setText("");
+            etNoteAI.setText("");
+            etNameAI.requestFocus();
+            Toast.makeText(this, "Incomes added successfully", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "Cannot add income", Toast.LENGTH_SHORT).show();
+            etNameAI.requestFocus();
+        }
     }
 
 }
