@@ -10,10 +10,10 @@ public class Expense {
     private Integer amount;
     private String category;
     private String account;
-    private String date;
+    private Date date;
     private String description;
 
-    public Expense(String name, Integer amount, String category, String account, String date, String description) {
+    public Expense(String name, Integer amount, String category, String account, Date date, String description) {
         this.name = name;
         this.amount = amount;
         this.category = category;
@@ -54,11 +54,11 @@ public class Expense {
         this.account = account;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

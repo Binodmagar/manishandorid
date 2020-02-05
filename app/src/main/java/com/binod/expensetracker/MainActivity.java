@@ -88,11 +88,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
 //                Calendar calendar = Calendar.getInstance();
-              String date = (month + 1) + "/" + dayOfMonth + "/" + year;
-              Log.d(date,"onSelectedDayChange: MMM d, ''yyyy: " + date);
+              String months = (month + 1) + "" ;
+              String days = dayOfMonth + "";
+              String years = year + "";
+//              Log.d(date,"onSelectedDayChange: MMM d, ''yyyy: " + date);
 
               Intent intent = new Intent(MainActivity.this, TransactionsActivity.class);
-              intent.putExtra("date", date);
+              intent.putExtra("months", months);
+              intent.putExtra("days", days);
+              intent.putExtra("years", years);
               startActivity(intent);
 
             }

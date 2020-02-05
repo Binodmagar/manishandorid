@@ -25,7 +25,8 @@ public class AddIncomeActivity extends AppCompatActivity {
 
     public static final String Income[] = {
             "Salary",
-            "Bonous",
+            "Bonus",
+            "Vacation Allowance"
     };
 
     public static final String Account[] = {

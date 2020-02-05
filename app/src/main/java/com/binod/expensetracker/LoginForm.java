@@ -1,7 +1,10 @@
 package com.binod.expensetracker;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,15 +16,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.binod.bll.LoginBLL;
+import com.binod.notification.NotificationChannel;
 import com.binod.strictmode.StrictModeClass;
 
 
 public class LoginForm extends AppCompatActivity implements View.OnClickListener {
 
+    private NotificationManagerCompat notificationManagerCompat;
 
       EditText etEmail, etPassword;
       Button btnLogin;
       TextView tvCreateAccount;
+
+    int count = 0;
 
 
     public void Login_Fragment(){
@@ -33,6 +40,9 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_form);
 //        getSupportActionBar().setTitle("test");
+        notificationManagerCompat = NotificationManagerCompat.from(this);
+        NotificationChannel notificationChannel = new NotificationChannel(this);
+        notificationChannel.createChannel();
 
         //binding
         etEmail = findViewById(R.id.etEmail);
@@ -52,7 +62,8 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
             case R.id.btnLogin:
                 if(checkValidation()){
                     login();
-                    SaveEmailandPass();
+                    DisplayNotification();
+                    SaveEmailPassword();
                 }else{
                     Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
                     return;
@@ -60,10 +71,9 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
                 break;
 
             case R.id.tvCreateAccount:
+
                 Intent intent = new Intent(LoginForm.this, RegisterActivity.class);
                 startActivity(intent);
-
-
         }
     }
 
@@ -97,13 +107,25 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
         }
     }
 
-    private void SaveEmailandPass(){
-
+    private void SaveEmailPassword(){
         SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
         editor.putString("Email", etEmail.getText().toString());
         editor.putString("Password",etPassword.getText().toString());
         editor.commit();
+    }
+
+
+    private void DisplayNotification(){
+//        Intent intent = new Intent(this, MyBoar)
+        Notification notification = new NotificationCompat.Builder(this, NotificationChannel.CHANNEL_1)
+                .setSmallIcon(R.drawable.notification)
+                .setContentTitle("Login Message")
+                .setContentText("User login success")
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
+        notificationManagerCompat.notify(count++, notification);
+
+
     }
 }

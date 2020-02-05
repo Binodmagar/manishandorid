@@ -13,14 +13,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.binod.api.ExpenseAPI;
 import com.binod.bll.ExpenseBLL;
-import com.binod.model.Expense;
-import com.binod.url.Url;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.Date;
 
 public class AddExpenseActivity extends AppCompatActivity {
 
@@ -57,8 +52,10 @@ public class AddExpenseActivity extends AppCompatActivity {
 
         //for incomming intent data
         Intent incommingIntent = getIntent();
-        String date = incommingIntent.getStringExtra("currentDate");
-        tvDateAE.setText(date);
+        String months = incommingIntent.getStringExtra("months");
+        String days = incommingIntent.getStringExtra("days");
+        String years = incommingIntent.getStringExtra("years");
+        //tvDateAE.setText();
 
         //for setting up data in category
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, Expense);
@@ -107,10 +104,10 @@ public class AddExpenseActivity extends AppCompatActivity {
         int amount = Integer.parseInt(etAmountAE.getText().toString());
         String category = spCategoryAE.getSelectedItem().toString();
         String account = spAccountAE.getSelectedItem().toString();
-        String date = tvDateAE.getText().toString();
+        //Date date = tvDateAE.getText().toString();
         String description = etNoteAE.getText().toString();
 
-        ExpenseBLL expenseBLL = new ExpenseBLL(name, amount, category, account, date, description);
+        ExpenseBLL expenseBLL = new ExpenseBLL(name, amount, category, account, , description);
 
         if(expenseBLL.addExpense()){
             Toast.makeText(AddExpenseActivity.this, "Expense Added successfully", Toast.LENGTH_SHORT).show();
