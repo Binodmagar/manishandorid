@@ -12,9 +12,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.binod.adapter.IncomeAdapter;
 import com.binod.adapter.TransactionAdpater;
 import com.binod.api.ExpenseAPI;
+import com.binod.api.IncomeAPI;
 import com.binod.model.Expense;
+import com.binod.model.Income;
 import com.binod.url.Url;
 
 import java.util.List;
@@ -27,7 +30,7 @@ public class TransactionsActivity extends AppCompatActivity {
 
     private Button btnIncomeT, btnExpenseT;
     private TextView tvDate;
-    RecyclerView rcTransactionDay;
+    RecyclerView rcTransactionDay, rcTransactionDay1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,7 @@ public class TransactionsActivity extends AppCompatActivity {
         btnIncomeT = findViewById(R.id.btnIncomeT);
         tvDate = (TextView) findViewById(R.id.tvDate);
         rcTransactionDay = findViewById(R.id.rcTransactionDay);
+        rcTransactionDay1 = findViewById(R.id.rcTransactionDay1);
 
 
         //for incomming intent data
@@ -103,6 +107,30 @@ public class TransactionsActivity extends AppCompatActivity {
 
                 Toast.makeText(TransactionsActivity.this, "failed" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
+
+            }
+        });
+
+
+        IncomeAPI incomeAPI = Url.getInstance().create(IncomeAPI.class);
+        Call<List<Income>> listCall1 = incomeAPI.getByUser(Url.token);
+        listCall1.enqueue(new Callback<List<Income>>() {
+            @Override
+            public void onResponse(Call<List<Income>> call, Response<List<Income>> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(TransactionsActivity.this, "Code" + response.body(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                List<Income> incomeList = response.body();
+                IncomeAdapter incomeAdapter = new IncomeAdapter(TransactionsActivity.this, incomeList);
+                rcTransactionDay1.setAdapter(incomeAdapter);
+                rcTransactionDay1.setLayoutManager(new LinearLayoutManager(TransactionsActivity.this, LinearLayoutManager.VERTICAL, false));
+            }
+
+            @Override
+            public void onFailure(Call<List<Income>> call, Throwable t) {
+                Toast.makeText(TransactionsActivity.this, "Failed", Toast.LENGTH_SHORT).show();
 
             }
         });

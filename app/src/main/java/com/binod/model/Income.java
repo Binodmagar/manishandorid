@@ -6,15 +6,19 @@ public class Income {
     private Integer amount;
     private String category;
     private String account;
-    private String date;
+    private String days;
+    private String months;
+    private String years;
     private String description;
 
-    public Income(String name, Integer amount, String category, String account, String date, String description) {
+    public Income(String name, Integer amount, String category, String account, String days, String months, String years, String description) {
         this.name = name;
         this.amount = amount;
         this.category = category;
         this.account = account;
-        this.date = date;
+        this.days = days;
+        this.months = months;
+        this.years = years;
         this.description = description;
     }
 
@@ -51,12 +55,28 @@ public class Income {
         this.account = account;
     }
 
-    public String getDate() {
-        return date;
+    public String getDays() {
+        return days;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDays(String days) {
+        this.days = days;
+    }
+
+    public String getMonths() {
+        return months;
+    }
+
+    public void setMonths(String months) {
+        this.months = months;
+    }
+
+    public String getYears() {
+        return years;
+    }
+
+    public void setYears(String years) {
+        this.years = years;
     }
 
     public String getDescription() {

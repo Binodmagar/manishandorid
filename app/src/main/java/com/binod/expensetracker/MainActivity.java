@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         tvAddIncome = findViewById(R.id.tvAddIncome);
         tvAddExpense = findViewById(R.id.tvAddExpense);
-        rvTodayHome = findViewById(R.id.rvTodayHome);
+       // rvTodayHome = findViewById(R.id.rvTodayHome);
 
         tvAddIncome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#ffffff"));
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new IncomeFragment(), "Income");
-        viewPagerAdapter.addFragment(new BalanceFragment(),"Balance");
+//        viewPagerAdapter.addFragment(new BalanceFragment(),"Balance");
         viewPagerAdapter.addFragment(new ExpenseFragment(), "Expense");
 
         viewPager.setAdapter(viewPagerAdapter);
@@ -121,32 +121,32 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        ExpenseAPI expenseAPI = Url.getInstance().create(ExpenseAPI.class);
-        Call<List<Expense>> listCall = expenseAPI.getByUser(Url.token);
-        listCall.enqueue(new Callback<List<Expense>>() {
-            @Override
-            public void onResponse(Call<List<Expense>> call, Response<List<Expense>> response) {
-                if (!response.isSuccessful()) {
-
-                    Toast.makeText(MainActivity.this, "Code" + response.code(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                List<Expense> expenseList = response.body();
-                TransactionAdpater transactionAdpater = new TransactionAdpater(MainActivity.this, expenseList);
-                rvTodayHome.setAdapter(transactionAdpater);
-                rvTodayHome.setLayoutManager(new LinearLayoutManager(MainActivity.this,LinearLayoutManager.VERTICAL,false));
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Expense>> call, Throwable t) {
-
-                Toast.makeText(MainActivity.this, "failed" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
-
-            }
-        });
+//
+//        ExpenseAPI expenseAPI = Url.getInstance().create(ExpenseAPI.class);
+//        Call<List<Expense>> listCall = expenseAPI.getByUser(Url.token);
+//        listCall.enqueue(new Callback<List<Expense>>() {
+//            @Override
+//            public void onResponse(Call<List<Expense>> call, Response<List<Expense>> response) {
+//                if (!response.isSuccessful()) {
+//
+//                    Toast.makeText(MainActivity.this, "Code" + response.code(), Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//
+//                List<Expense> expenseList = response.body();
+//                TransactionAdpater transactionAdpater = new TransactionAdpater(MainActivity.this, expenseList);
+//                rvTodayHome.setAdapter(transactionAdpater);
+//                rvTodayHome.setLayoutManager(new LinearLayoutManager(MainActivity.this,LinearLayoutManager.VERTICAL,false));
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Expense>> call, Throwable t) {
+//
+//                Toast.makeText(MainActivity.this, "failed" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+//
+//
+//            }
+//        });
     }
 }

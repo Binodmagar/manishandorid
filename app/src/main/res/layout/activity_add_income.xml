@@ -109,6 +109,22 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>
 
+    <TextView
+        android:id="@+id/tvDayI"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/tvMonthI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/tvYearI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/btnSaveAI"
         android:text="Save"

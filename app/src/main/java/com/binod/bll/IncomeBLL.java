@@ -1,5 +1,8 @@
 package com.binod.bll;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.binod.api.IncomeAPI;
 import com.binod.model.Income;
 import com.binod.url.Url;
@@ -15,23 +18,30 @@ public class IncomeBLL {
     private Integer amount;
     private String category;
     private String account;
-    private String date;
+    private String days;
+    private String months;
+    private String years;
     private String description;
     private boolean issuccess;
 
-    public IncomeBLL(String name, Integer amount, String category, String account, String date, String description) {
+    public IncomeBLL(String name, Integer amount, String category, String account, String days, String months, String years, String description) {
         this.name = name;
         this.amount = amount;
         this.category = category;
         this.account = account;
-        this.date = date;
+        this.days = days;
+        this.months = months;
+        this.years = years;
         this.description = description;
     }
 
-    public boolean addIncome(){
+    public boolean addIncome(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("User", context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token","");
+
         IncomeAPI incomeAPI = Url.getInstance().create(IncomeAPI.class);
-        Income income = new Income(name, amount, category, account, date, description);
-        Call<Income> incomeCall =  incomeAPI.addIncome(income);
+        //Income income = new Income(name, amount, category, account, days, months, years, description);
+        Call<Income> incomeCall = incomeAPI.addIncome(token, name, amount, category, account, days, months, years, description);
 
         try{
             Response<Income> response = incomeCall.execute();

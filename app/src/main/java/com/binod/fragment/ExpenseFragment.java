@@ -17,6 +17,7 @@ import com.binod.api.ExpenseAPI;
 import com.binod.expensetracker.R;
 import com.binod.expensetracker.TransactionsActivity;
 import com.binod.model.Expense;
+import com.binod.model.Income;
 import com.binod.url.Url;
 
 import java.util.List;
