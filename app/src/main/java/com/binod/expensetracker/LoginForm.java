@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.binod.bll.LoginBLL;
 import com.binod.notification.NotificationChannel;
 import com.binod.strictmode.StrictModeClass;
+import com.binod.url.Url;
 
 
 public class LoginForm extends AppCompatActivity implements View.OnClickListener {
@@ -107,15 +108,6 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
         }
     }
 
-    private void SaveEmailPassword(){
-        SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("Email", etEmail.getText().toString());
-        editor.putString("Password",etPassword.getText().toString());
-        editor.commit();
-    }
-
-
     private void DisplayNotification(){
 //        Intent intent = new Intent(this, MyBoar)
         Notification notification = new NotificationCompat.Builder(this, NotificationChannel.CHANNEL_1)
@@ -125,7 +117,16 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                 .build();
         notificationManagerCompat.notify(count++, notification);
+    }
 
 
+    private void SaveEmailPassword(){
+        String token = Url.token;
+        SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("token", token);
+        editor.putString("Email", etEmail.getText().toString());
+        editor.putString("Password",etPassword.getText().toString());
+        editor.commit();
     }
 }

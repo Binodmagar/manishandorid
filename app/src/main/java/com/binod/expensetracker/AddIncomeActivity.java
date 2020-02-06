@@ -56,9 +56,15 @@ public class AddIncomeActivity extends AppCompatActivity {
         spAccountAI.setAdapter(arrayAdapter1);
 
         //for incomming data from intent
-        Intent incommingIntent = getIntent();
-        String date = incommingIntent.getStringExtra("currentDate");
-        tvDateAI.setText(date);
+
+        Bundle extras = getIntent().getExtras();
+        final String months = extras.getString("months");
+        final String days = extras.getString("days");
+        final String years = extras.getString("years");
+        tvDateAI.setText(months + "-" + days + "-" + years);
+//        Intent incommingIntent = getIntent();
+//        String date = incommingIntent.getStringExtra("currentDate");
+//        tvDateAI.setText(date);
 
         btnSaveAI.setOnClickListener(new View.OnClickListener() {
             @Override

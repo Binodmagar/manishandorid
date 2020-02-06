@@ -10,17 +10,22 @@ public class Expense {
     private Integer amount;
     private String category;
     private String account;
-    private Date date;
+    private String days;
+    private String months;
+    private String years;
     private String description;
 
-    public Expense(String name, Integer amount, String category, String account, Date date, String description) {
+    public Expense(String name, Integer amount, String category, String account, String days, String months, String years, String description) {
         this.name = name;
         this.amount = amount;
         this.category = category;
         this.account = account;
-        this.date = date;
+        this.days = days;
+        this.months = months;
+        this.years = years;
         this.description = description;
     }
+
 
     public String getName() {
         return name;
@@ -54,12 +59,28 @@ public class Expense {
         this.account = account;
     }
 
-    public Date getDate() {
-        return date;
+    public String getDays() {
+        return days;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDays(String days) {
+        this.days = days;
+    }
+
+    public String getMonths() {
+        return months;
+    }
+
+    public void setMonths(String months) {
+        this.months = months;
+    }
+
+    public String getYears() {
+        return years;
+    }
+
+    public void setYears(String years) {
+        this.years = years;
     }
 
     public String getDescription() {

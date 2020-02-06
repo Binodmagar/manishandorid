@@ -3,8 +3,10 @@ package com.binod.expensetracker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,10 +21,11 @@ import java.util.Date;
 
 public class AddExpenseActivity extends AppCompatActivity {
 
-    TextView tvDateAE;
+    TextView tvDateAE, tvDayE, tvMonthE, tvYearE;
     Spinner spCategoryAE, spAccountAE;
     EditText etNameAE, etAmountAE, etNoteAE;
     Button btnSaveAE;
+
 
     public static final String Expense[] = {
             "Food",
@@ -49,13 +52,20 @@ public class AddExpenseActivity extends AppCompatActivity {
         etAmountAE = findViewById(R.id.etAmountAE);
         etNoteAE = findViewById(R.id.etNoteAE);
         btnSaveAE = findViewById(R.id.btnSaveAE);
+        tvDateAE = findViewById(R.id.tvDateAE);
+        tvDayE = findViewById(R.id.tvDayE);
+        tvMonthE = findViewById(R.id.tvMonthE);
+        tvYearE = findViewById(R.id.tvYearE);
 
         //for incomming intent data
-        Intent incommingIntent = getIntent();
-        String months = incommingIntent.getStringExtra("months");
-        String days = incommingIntent.getStringExtra("days");
-        String years = incommingIntent.getStringExtra("years");
-        //tvDateAE.setText();
+        Bundle extras = getIntent().getExtras();
+        final String months = extras.getString("months");
+        tvMonthE.setText(months);
+        final String days = extras.getString("days");
+        tvDayE.setText(days);
+        final String years = extras.getString("years");
+        tvYearE.setText(years);
+        tvDateAE.setText(months + "-" + days + "-" + years);
 
         //for setting up data in category
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, Expense);
@@ -99,45 +109,27 @@ public class AddExpenseActivity extends AppCompatActivity {
         return  status;
     }
 
-    private void addExpense(){
+    private void addExpense() {
         String name = etNameAE.getText().toString();
         int amount = Integer.parseInt(etAmountAE.getText().toString());
         String category = spCategoryAE.getSelectedItem().toString();
         String account = spAccountAE.getSelectedItem().toString();
-        //Date date = tvDateAE.getText().toString();
+        String days = tvDayE.getText().toString();
+        String months = tvMonthE.getText().toString();
+        String years = tvYearE.getText().toString();
         String description = etNoteAE.getText().toString();
 
-        ExpenseBLL expenseBLL = new ExpenseBLL(name, amount, category, account, , description);
 
-        if(expenseBLL.addExpense()){
+        ExpenseBLL expenseBLL = new ExpenseBLL(name, amount, category, account, days, months, years, description);
+
+        if (expenseBLL.addExpense(this)) {
             Toast.makeText(AddExpenseActivity.this, "Expense Added successfully", Toast.LENGTH_SHORT).show();
             etNameAE.setText("");
             etAmountAE.setText("");
             etNoteAE.setText("");
-        }else{
+        } else {
             Toast.makeText(AddExpenseActivity.this, "Cannot add expense", Toast.LENGTH_SHORT).show();
 
         }
-
-//        Expense expense = new Expense(name, amount, category, account, date, description);
-//        ExpenseAPI expenseAPI = Url.getInstance().create(ExpenseAPI.class);
-//        Call<Expense> expenseCall = expenseAPI.addProduct(expense);
-//
-//        expenseCall.enqueue(new Callback<com.binod.model.Expense>() {
-//            @Override
-//            public void onResponse(Call<com.binod.model.Expense> call, Response<com.binod.model.Expense> response) {
-//                if(!response.isSuccessful()){
-//                    Toast.makeText(AddExpenseActivity.this, "Cannot add expense", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }else {
-//                    Toast.makeText(AddExpenseActivity.this, "Expense added successfully!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<com.binod.model.Expense> call, Throwable t) {
-//                Toast.makeText(AddExpenseActivity.this, "Error code" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 }

@@ -5,11 +5,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Url {
 
-   //public static final String base_url = "http://192.168.1.72:3000";
-   public static final String base_url = "http://10.0.2.2:3000";
+  // public static final String base_url = "http://172.26.4.170:3002";
+   public static final String base_url = "http://10.0.2.2:3002";
 //  public static final String base_url = "http://127.0.0.1:3000"; //testing ui and inst
 
-    public static String token = "Bearer";
+    public static String token = "Bearer ";
     public static String imagePath = base_url + "/uploads";
 
     public static Retrofit getInstance() {
