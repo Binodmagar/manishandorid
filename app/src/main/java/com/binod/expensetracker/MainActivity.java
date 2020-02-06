@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private CalendarView calendarView;
     private TextView tvAddIncome, tvAddExpense;
     RecyclerView rvTodayHome;
+    ImageView imgSetting;
 
 
     @Override
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         //binding
         viewPager = findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tabLayout);
+        imgSetting = findViewById(R.id.imgSetting);
 
         tvAddIncome = findViewById(R.id.tvAddIncome);
         tvAddExpense = findViewById(R.id.tvAddExpense);
@@ -80,6 +82,14 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(MainActivity.this, AddExpenseActivity.class);
                 intent.putExtra("currentDate", currentDate);
+                startActivity(intent);
+            }
+        });
+
+        imgSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, UpdateProfileActiivty.class);
                 startActivity(intent);
             }
         });
