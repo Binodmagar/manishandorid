@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.binod.adapter.ExpenseHomeAdapter;
 import com.binod.adapter.TransactionAdpater;
 import com.binod.adapter.ViewPagerAdapter;
 import com.binod.api.ExpenseAPI;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         tvAddIncome = findViewById(R.id.tvAddIncome);
         tvAddExpense = findViewById(R.id.tvAddExpense);
-       // rvTodayHome = findViewById(R.id.rvTodayHome);
+        rvTodayHome = findViewById(R.id.rvTodayHome);
 
         tvAddIncome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,32 +132,30 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-//
-//        ExpenseAPI expenseAPI = Url.getInstance().create(ExpenseAPI.class);
-//        Call<List<Expense>> listCall = expenseAPI.getByUser(Url.token);
-//        listCall.enqueue(new Callback<List<Expense>>() {
-//            @Override
-//            public void onResponse(Call<List<Expense>> call, Response<List<Expense>> response) {
-//                if (!response.isSuccessful()) {
-//
-//                    Toast.makeText(MainActivity.this, "Code" + response.code(), Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//
-//                List<Expense> expenseList = response.body();
-//                TransactionAdpater transactionAdpater = new TransactionAdpater(MainActivity.this, expenseList);
-//                rvTodayHome.setAdapter(transactionAdpater);
-//                rvTodayHome.setLayoutManager(new LinearLayoutManager(MainActivity.this,LinearLayoutManager.VERTICAL,false));
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Expense>> call, Throwable t) {
-//
-//                Toast.makeText(MainActivity.this, "failed" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-//
-//
-//            }
-//        });
+        SimpleDateFormat formatter = new SimpleDateFormat("d");
+        Date date = new Date();
+        String today = formatter.format(date);
+
+        ExpenseAPI expenseAPI = Url.getInstance().create(ExpenseAPI.class);
+        Call<List<Expense>> listCall = expenseAPI.getByDays(Url.token,today);
+        listCall.enqueue(new Callback<List<Expense>>() {
+            @Override
+            public void onResponse(Call<List<Expense>> call, Response<List<Expense>> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(MainActivity.this, "Code" + response.body(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                List<Expense> expenseList = response.body();
+                ExpenseHomeAdapter expenseHomeAdapter = new ExpenseHomeAdapter(MainActivity.this, expenseList);
+                rvTodayHome.setAdapter(expenseHomeAdapter);
+                rvTodayHome.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false));
+            }
+
+            @Override
+            public void onFailure(Call<List<Expense>> call, Throwable t) {
+
+            }
+        });
+
     }
 }
