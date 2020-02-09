@@ -18,13 +18,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.binod.adapter.ExpenseHomeAdapter;
+import com.binod.adapter.IncomeHomeAdapter;
 import com.binod.adapter.TransactionAdpater;
 import com.binod.adapter.ViewPagerAdapter;
 import com.binod.api.ExpenseAPI;
+import com.binod.api.IncomeAPI;
 import com.binod.fragment.BalanceFragment;
 import com.binod.fragment.ExpenseFragment;
 import com.binod.fragment.IncomeFragment;
 import com.binod.model.Expense;
+import com.binod.model.Income;
 import com.binod.url.Url;
 import com.google.android.material.tabs.TabLayout;
 
@@ -44,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
 
     private CalendarView calendarView;
-    private TextView tvAddIncome, tvAddExpense;
-    RecyclerView rvTodayHome;
+    private TextView tvAddIncome, tvAddExpense, tvTodayRefreshH;
+    RecyclerView rvTodayHome, rvTodayHomeI;
     ImageView imgSetting;
 
 
@@ -62,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         tvAddIncome = findViewById(R.id.tvAddIncome);
         tvAddExpense = findViewById(R.id.tvAddExpense);
         rvTodayHome = findViewById(R.id.rvTodayHome);
+        rvTodayHomeI = findViewById(R.id.rvTodayHomeI);
+        tvTodayRefreshH = findViewById(R.id.tvTodayRefreshH);
 
         tvAddIncome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +137,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        tvTodayRefreshH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                todayExpenseH();
+                todayIncomeH();
+            }
+        });
+
+    }
+    private void todayExpenseH(){
         SimpleDateFormat formatter = new SimpleDateFormat("d");
         Date date = new Date();
         String today = formatter.format(date);
@@ -153,7 +169,35 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Expense>> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Errors" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
+    }
+
+    private void todayIncomeH(){
+        SimpleDateFormat formatter = new SimpleDateFormat("d");
+        Date date = new Date();
+        String today = formatter.format(date);
+        //for today incomes
+        IncomeAPI incomeAPI = Url.getInstance().create(IncomeAPI.class);
+        Call<List<Income>> listCall1 = incomeAPI.getByDays(Url.token, today);
+        listCall1.enqueue(new Callback<List<Income>>() {
+            @Override
+            public void onResponse(Call<List<Income>> call, Response<List<Income>> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(MainActivity.this, "Code", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                List<Income> incomeList = response.body();
+                IncomeHomeAdapter incomeHomeAdapter = new IncomeHomeAdapter(MainActivity.this, incomeList);
+                rvTodayHomeI.setAdapter(incomeHomeAdapter);
+                rvTodayHomeI.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false));
+            }
+
+            @Override
+            public void onFailure(Call<List<Income>> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Errors" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

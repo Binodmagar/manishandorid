@@ -25,4 +25,7 @@ public interface ExpenseAPI {
 
     @GET("/expenses")
     Call<List<Expense>> getByUser(@Header("Authorization") String token);
+
+    @GET("/expenses/{days}")
+    Call<List<Expense>> getByDays(@Header("Authorization") String token, @Path("days") String days);
 }

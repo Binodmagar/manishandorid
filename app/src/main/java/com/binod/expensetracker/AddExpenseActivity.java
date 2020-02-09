@@ -127,6 +127,8 @@ public class AddExpenseActivity extends AppCompatActivity {
             etNameAE.setText("");
             etAmountAE.setText("");
             etNoteAE.setText("");
+//            Intent intent = new Intent(AddExpenseActivity.this, TransactionsActivity.class);
+//            startActivity(intent);
         } else {
             Toast.makeText(AddExpenseActivity.this, "Cannot add expense", Toast.LENGTH_SHORT).show();
 

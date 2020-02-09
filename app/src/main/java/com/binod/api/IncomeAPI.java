@@ -12,6 +12,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface IncomeAPI {
 
@@ -24,4 +25,7 @@ public interface IncomeAPI {
 
     @GET("/incomes")
     Call<List<Income>> getByUser(@Header("Authorization") String token);
+
+    @GET("/incomes/{days}")
+    Call<List<Income>> getByDays(@Header("Authorization") String token, @Path("days") String days);
 }

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
     tools:context=".MainActivity">
@@ -67,19 +70,24 @@
         android:weekDayTextAppearance="@style/CalenderViewWeekCustomText" />
 
     <TextView
-        android:id="@+id/tvToday"
+        android:id="@+id/tvTodayRefreshH"
         android:textColor="@color/white"
         android:padding="10dp"
         android:textStyle="bold"
         android:drawablePadding="8dp"
         android:drawableLeft="@drawable/trans"
         android:text="Today's transactions"
+        android:drawableRight="@drawable/refresh"
         android:background="#06A55A"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTodayHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTodayHomeI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -92,6 +100,5 @@
         android:text="No transactions for today. Tap here to start addding expenses or incomes."
         android:textColor="#06A55A"
         android:textStyle="bold" />
-
-
 </LinearLayout>
+</ScrollView>

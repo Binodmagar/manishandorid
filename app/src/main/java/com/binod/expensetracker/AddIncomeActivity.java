@@ -128,6 +128,8 @@ public class AddIncomeActivity extends AppCompatActivity {
             etNoteAI.setText("");
             etNameAI.requestFocus();
             Toast.makeText(this, "Incomes added successfully", Toast.LENGTH_SHORT).show();
+//            Intent intent = new Intent(AddIncomeActivity.this, TransactionsActivity.class);
+//            startActivity(intent);
         }else{
             Toast.makeText(this, "Cannot add income", Toast.LENGTH_SHORT).show();
             etNameAI.requestFocus();
