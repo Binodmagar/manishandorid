@@ -20,38 +20,52 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withSpinnerText;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.stringContainsInOrder;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class ExpenseInstrumentedTest {
-
     @Rule
-    public ActivityTestRule<AddIncomeActivity>
-            testRule = new ActivityTestRule<>(AddIncomeActivity.class);
+    public ActivityTestRule<AddExpenseActivity>
+    testRule = new ActivityTestRule<>(AddExpenseActivity.class);
 
     @Test
     public void addExpense(){
-        onView(withId(R.id.etNameAE)).perform(typeText("Salary"), closeSoftKeyboard());
-        onView(withId(R.id.etAmountAE)).perform(typeText("1000"), closeSoftKeyboard());
+        onView(withId(R.id.etNameAE))
+                .perform(typeText("momo"))
+                .perform(closeSoftKeyboard());
 
-//        onView(withId(R.id.spIncomeAI)).perform(click());
-//        onData(allOf(is(instanceOf(String.class)), is(selectionText))).perform(click());
-//        onView(withId(R.id.spIncomeAI)).check(matches(withSpinnerText(containsString("salary"))));
+        onView(withId(R.id.etAmountAE))
+                .perform(typeText(String.valueOf(100)))
+                .perform(closeSoftKeyboard());
+
         onView(withId(R.id.spCategoryAE)).perform(click());
         onData(anything()).atPosition(0).perform(click());
-        onView(withId(R.id.spCategoryAE)).check(matches(withSpinnerText(containsString("Salary"))));
+        onView(withId(R.id.spCategoryAE)).check(matches(withSpinnerText(containsString("Food"))));
 
         onView(withId(R.id.spAccountAE)).perform(click());
         onData(anything()).atPosition(0).perform(click());
         onView(withId(R.id.spAccountAE)).check(matches(withSpinnerText(containsString("Cash"))));
 
-        onView(withId(R.id.etNoteAE)).perform(typeText("Salary of the month"), closeSoftKeyboard());
-        onView(withId(R.id.tvDateAE)).perform(typeText("1000"), closeSoftKeyboard());
+        onView(withId(R.id.etDayE))
+                .perform(typeText("2"))
+                .perform(closeSoftKeyboard());
+
+        onView(withId(R.id.etMonthE))
+                .perform(typeText("2"))
+                .perform(closeSoftKeyboard());
+        onView(withId(R.id.etYearE))
+                .perform(typeText("2020"))
+                .perform(closeSoftKeyboard());
+
+        onView(withId(R.id.etNoteAE))
+                .perform(typeText("Todays breakfast"))
+                .perform(closeSoftKeyboard());
 
         onView(withId(R.id.btnSaveAE))
                 .perform(click());
 
-        onView(withId(R.id.tvToday))
+        onView(withId(R.id.tvTodayRefresh))
                 .check(matches(isDisplayed()));
     }
 }

@@ -51,6 +51,8 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
         btnLogin = findViewById(R.id.btnLogin);
         tvCreateAccount = findViewById(R.id.tvCreateAccount);
 
+        etEmail.setText("roman@gmail.com");
+        etPassword.setText("roman12345");
         //listener
         btnLogin.setOnClickListener(this);
         tvCreateAccount.setOnClickListener(this);
@@ -93,8 +95,8 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
     }
 
     private void login() {
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
+        String email = etEmail.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
 
         LoginBLL loginBLL = new LoginBLL();
         StrictModeClass.StrictMode();
