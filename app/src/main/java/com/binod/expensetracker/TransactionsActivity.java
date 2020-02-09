@@ -29,7 +29,7 @@ import retrofit2.Response;
 public class TransactionsActivity extends AppCompatActivity {
 
     private Button btnIncomeT, btnExpenseT;
-    private TextView tvDate;
+    private TextView tvDate, tvTodayRefresh;
     RecyclerView rcTransactionDay, rcTransactionDay1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class TransactionsActivity extends AppCompatActivity {
         tvDate = (TextView) findViewById(R.id.tvDate);
         rcTransactionDay = findViewById(R.id.rcTransactionDay);
         rcTransactionDay1 = findViewById(R.id.rcTransactionDay1);
+        tvTodayRefresh = findViewById(R.id.tvTodayRefresh);
 
 
         //for incomming intent data
@@ -68,8 +69,6 @@ public class TransactionsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
         btnExpenseT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +82,18 @@ public class TransactionsActivity extends AppCompatActivity {
             }
         });
 
+        tvTodayRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                expenseRecycle();
+                incomeRecycle();
+            }
+        });
+        expenseRecycle();
+        incomeRecycle();
 
+    }
+    private void expenseRecycle(){
         ExpenseAPI expenseAPI = Url.getInstance().create(ExpenseAPI.class);
         Call<List<Expense>> listCall = expenseAPI.getByUser(Url.token);
         listCall.enqueue(new Callback<List<Expense>>() {
@@ -106,12 +116,11 @@ public class TransactionsActivity extends AppCompatActivity {
             public void onFailure(Call<List<Expense>> call, Throwable t) {
 
                 Toast.makeText(TransactionsActivity.this, "failed" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
-
             }
         });
+    }
 
-
+    private void incomeRecycle(){
         IncomeAPI incomeAPI = Url.getInstance().create(IncomeAPI.class);
         Call<List<Income>> listCall1 = incomeAPI.getByUser(Url.token);
         listCall1.enqueue(new Callback<List<Income>>() {
@@ -134,8 +143,5 @@ public class TransactionsActivity extends AppCompatActivity {
 
             }
         });
-
-
-
     }
 }

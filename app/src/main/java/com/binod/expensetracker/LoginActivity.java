@@ -21,7 +21,7 @@ import com.binod.strictmode.StrictModeClass;
 import com.binod.url.Url;
 
 
-public class LoginForm extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private NotificationManagerCompat notificationManagerCompat;
 
@@ -75,7 +75,7 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
 
             case R.id.tvCreateAccount:
 
-                Intent intent = new Intent(LoginForm.this, RegisterActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
         }
     }
@@ -101,7 +101,7 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
         LoginBLL loginBLL = new LoginBLL();
         StrictModeClass.StrictMode();
         if(loginBLL.checkUser(email, password)){
-            Intent intent = new Intent(LoginForm.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }else {

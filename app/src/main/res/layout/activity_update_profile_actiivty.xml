@@ -145,8 +145,20 @@
             android:textColor="@color/background"
             android:textSize="17sp"
             android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tvLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Want to LogOut? Click herer"
+        android:textColor="@color/white_greyish"
+        android:textSize="15sp" />
 
-    </LinearLayout>
+
+</LinearLayout>
 
 
 

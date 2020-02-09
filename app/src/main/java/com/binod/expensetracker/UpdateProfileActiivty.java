@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.content.CursorLoader;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -14,7 +14,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.binod.api.UserLoginAPI;
@@ -42,6 +42,7 @@ public class UpdateProfileActiivty extends AppCompatActivity {
     Button btnUpdate;
     String imagePath;
     String imgName = "";
+    TextView tvLogout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,7 @@ public class UpdateProfileActiivty extends AppCompatActivity {
         etEmailUP = findViewById(R.id.etEmailUP);
         etPasswordUP = findViewById(R.id.etPasswordUP);
         btnUpdate = findViewById(R.id.btnUpdate);
+        tvLogout = findViewById(R.id.tvLogout);
 
         loadCurrentUser();
 
@@ -100,6 +102,16 @@ public class UpdateProfileActiivty extends AppCompatActivity {
                 }else {
                     Toast.makeText(UpdateProfileActiivty.this, "Please provide valid credential!", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logout();
+                Intent intent = new Intent(UpdateProfileActiivty.this, LoginActivity.class);
+                startActivity(intent);
+
             }
         });
 
@@ -226,5 +238,16 @@ public class UpdateProfileActiivty extends AppCompatActivity {
             status = false;
         }
         return status;
+    }
+
+    private void Logout(){
+        String token = Url.token;
+        SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("token", "");
+        editor.putString("Email", "");
+        editor.putString("Password","");
+        editor.commit();
+
     }
 }

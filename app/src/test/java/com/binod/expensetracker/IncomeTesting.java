@@ -1,5 +1,7 @@
 package com.binod.expensetracker;
 
+import android.content.Context;
+
 import com.binod.bll.IncomeBLL;
 import com.binod.model.Income;
 
@@ -13,12 +15,12 @@ public class IncomeTesting {
 
     @Before
     public void setUp(){
-        incomeBLL = new IncomeBLL("Salary",10000, "Salary","cash","2020/01/2","Income of jan month");
+       incomeBLL = new IncomeBLL("Salary",10000, "Salary","cash","2", "1", "2020","Income of jan month");
     }
 
     @Test
-    public void testIncome(){
-        boolean result = incomeBLL.addIncome();
-        assertEquals(true, result);
+    public void testIncome(Context context){
+        boolean result = incomeBLL.addIncome(context);
+       assertEquals(true, result);
     }
 }

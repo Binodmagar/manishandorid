@@ -17,7 +17,7 @@ public class LoginBLLTest {
     @Test
     public void testLogin(){
 
-        boolean result = loginBLL.checkUser("binod@gmail.com", "admin12345");
+        boolean result = loginBLL.checkUser("roman@gmail.com", "roman12345");
         assertEquals(true, result);
     }
 }

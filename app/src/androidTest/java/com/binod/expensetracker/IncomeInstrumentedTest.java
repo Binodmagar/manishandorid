@@ -36,13 +36,10 @@ public class IncomeInstrumentedTest {
     testRule = new ActivityTestRule<>(AddIncomeActivity.class);
 
     @Test
-    public void addExpense(){
+    public void addIncome(){
         onView(withId(R.id.etNameAI)).perform(typeText("Salary"), closeSoftKeyboard());
         onView(withId(R.id.etAmountAI)).perform(typeText("1000"), closeSoftKeyboard());
 
-//        onView(withId(R.id.spIncomeAI)).perform(click());
-//        onData(allOf(is(instanceOf(String.class)), is(selectionText))).perform(click());
-//        onView(withId(R.id.spIncomeAI)).check(matches(withSpinnerText(containsString("salary"))));
         onView(withId(R.id.spIncomeAI)).perform(click());
         onData(anything()).atPosition(0).perform(click());
         onView(withId(R.id.spIncomeAI)).check(matches(withSpinnerText(containsString("Salary"))));
@@ -50,14 +47,16 @@ public class IncomeInstrumentedTest {
         onView(withId(R.id.spAccountAI)).perform(click());
         onData(anything()).atPosition(0).perform(click());
         onView(withId(R.id.spAccountAI)).check(matches(withSpinnerText(containsString("Cash"))));
-
         onView(withId(R.id.etNoteAI)).perform(typeText("Salary of the month"), closeSoftKeyboard());
-        onView(withId(R.id.tvDateAI)).perform(typeText("1000"), closeSoftKeyboard());
+
+        onView(withId(R.id.tvDayI)).perform(typeText("30"), closeSoftKeyboard());
+        onView(withId(R.id.tvMonthI)).perform(typeText("9"), closeSoftKeyboard());
+        onView(withId(R.id.tvYearI)).perform(typeText("2020"), closeSoftKeyboard());
 
         onView(withId(R.id.btnSaveAI))
                 .perform(click());
 
-        onView(withId(R.id.tvToday))
+        onView(withId(R.id.tvTodayRefreshH))
                 .check(matches(isDisplayed()));
     }
 

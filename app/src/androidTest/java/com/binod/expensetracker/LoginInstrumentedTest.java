@@ -22,8 +22,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 @LargeTest
 public class LoginInstrumentedTest {
     @Rule
-    public ActivityTestRule<LoginForm>
-            testRule = new ActivityTestRule<>(LoginForm.class);
+    public ActivityTestRule<LoginActivity>
+            testRule = new ActivityTestRule<>(LoginActivity.class);
 
     @Test
     public void checkUser(){
@@ -31,7 +31,7 @@ public class LoginInstrumentedTest {
         onView(withId(R.id.etPassword)).perform(typeText("admin12345"),closeSoftKeyboard());
         onView(withId(R.id.btnLogin)).perform(click());
 
-        onView(withId(R.id.tvToday))
+        onView(withId(R.id.tvTodayRefreshH))
                 .check(matches(isDisplayed()));
     }
 }

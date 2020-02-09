@@ -1,5 +1,7 @@
 package com.binod.expensetracker;
 
+import android.content.Context;
+
 import com.binod.bll.ExpenseBLL;
 
 import org.junit.Before;
@@ -13,12 +15,12 @@ public class ExpenseTesting {
 
     @Before
     public void setUp(){
-        expenseBLL = new ExpenseBLL("Momo",100, "Food", "cash", "2020/01/7","College breakfast");
+        expenseBLL = new ExpenseBLL("Momo",100, "Food", "cash", "2","2","2020","College breakfast");
     }
 
     @Test
-    public void testExpense(){
-        boolean result = expenseBLL.addExpense();
-        assertEquals(true, result);
+    public void testExpense(Context context){
+       boolean result = expenseBLL.addExpense(context);
+       assertEquals(true, result);
     }
 }

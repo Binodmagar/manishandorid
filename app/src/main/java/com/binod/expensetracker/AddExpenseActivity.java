@@ -21,9 +21,9 @@ import java.util.Date;
 
 public class AddExpenseActivity extends AppCompatActivity {
 
-    TextView tvDateAE, tvDayE, tvMonthE, tvYearE;
+    TextView tvDateAE;
     Spinner spCategoryAE, spAccountAE;
-    EditText etNameAE, etAmountAE, etNoteAE;
+    EditText etNameAE, etAmountAE, etNoteAE, etDayE, etMonthE, etYearE;
     Button btnSaveAE;
 
 
@@ -53,18 +53,18 @@ public class AddExpenseActivity extends AppCompatActivity {
         etNoteAE = findViewById(R.id.etNoteAE);
         btnSaveAE = findViewById(R.id.btnSaveAE);
         tvDateAE = findViewById(R.id.tvDateAE);
-        tvDayE = findViewById(R.id.tvDayE);
-        tvMonthE = findViewById(R.id.tvMonthE);
-        tvYearE = findViewById(R.id.tvYearE);
+        etDayE = findViewById(R.id.etDayE);
+        etMonthE = findViewById(R.id.etMonthE);
+        etYearE = findViewById(R.id.etYearE);
 
         //for incomming intent data
         Bundle extras = getIntent().getExtras();
         final String months = extras.getString("months");
-        tvMonthE.setText(months);
+        etMonthE.setText(months);
         final String days = extras.getString("days");
-        tvDayE.setText(days);
+        etDayE.setText(days);
         final String years = extras.getString("years");
-        tvYearE.setText(years);
+        etYearE.setText(years);
         tvDateAE.setText(months + "-" + days + "-" + years);
 
         //for setting up data in category
@@ -114,9 +114,9 @@ public class AddExpenseActivity extends AppCompatActivity {
         int amount = Integer.parseInt(etAmountAE.getText().toString());
         String category = spCategoryAE.getSelectedItem().toString();
         String account = spAccountAE.getSelectedItem().toString();
-        String days = tvDayE.getText().toString();
-        String months = tvMonthE.getText().toString();
-        String years = tvYearE.getText().toString();
+        String days = etDayE.getText().toString();
+        String months = etMonthE.getText().toString();
+        String years = etYearE.getText().toString();
         String description = etNoteAE.getText().toString();
 
 

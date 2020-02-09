@@ -12,22 +12,17 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.binod.api.UserLoginAPI;
 import com.binod.bll.RegisterBLL;
-import com.binod.model.UserLogin;
 import com.binod.serverresponse.ImageResponse;
-import com.binod.serverresponse.SignUpResponse;
 import com.binod.strictmode.StrictModeClass;
 import com.binod.url.Url;
 
@@ -39,7 +34,6 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -89,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     if (checkValidation()) {
                         saveImage();
                         register();
-                        Intent intent = new Intent(RegisterActivity.this, LoginForm.class);
+                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(intent);
 
                     }else{
@@ -101,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 break;
 
             case R.id.tvAlreadyUser:
-                Intent intent = new Intent(RegisterActivity.this, LoginForm.class);
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
         }
     }
@@ -206,7 +200,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         CheckPermission();
         if(registerBLL.addUser()){
             Toast.makeText(RegisterActivity.this, "register success", Toast.LENGTH_SHORT);
-            Intent intent = new Intent(RegisterActivity.this, LoginForm.class);
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
         }else{

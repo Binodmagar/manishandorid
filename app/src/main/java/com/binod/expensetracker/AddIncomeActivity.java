@@ -61,13 +61,13 @@ public class AddIncomeActivity extends AppCompatActivity {
         //for incomming data from intent
 
         Bundle extras = getIntent().getExtras();
-        final String months = extras.getString("months");
-        tvMonthI.setText(months);
-        final String days = extras.getString("days");
-        tvDayI.setText(days);
-        final String years = extras.getString("years");
-        tvYearI.setText(years);
-        tvDateAI.setText(months + "-" + days + "-" + years);
+//        final String months = extras.getString("months");
+//        tvMonthI.setText(months);
+//        final String days = extras.getString("days");
+//        tvDayI.setText(days);
+//        final String years = extras.getString("years");
+//        tvYearI.setText(years);
+//        tvDateAI.setText(months + "-" + days + "-" + years);
 //        Intent incommingIntent = getIntent();
 //        String date = incommingIntent.getStringExtra("currentDate");
 //        tvDateAI.setText(date);

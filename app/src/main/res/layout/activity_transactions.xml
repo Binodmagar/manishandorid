@@ -22,13 +22,14 @@
         android:layout_height="60dp"
         android:layout_width="match_parent"/>
     <TextView
-        android:id="@+id/tvToday"
+        android:id="@+id/tvTodayRefresh"
         android:textColor="@color/white"
         android:padding="10dp"
         android:textStyle="bold"
         android:textSize="20dp"
         android:drawablePadding="8dp"
         android:drawableLeft="@drawable/trans"
+        android:drawableRight="@drawable/refresh"
         android:text="Transactions"
         android:background="#06A55A"
         android:layout_height="wrap_content"

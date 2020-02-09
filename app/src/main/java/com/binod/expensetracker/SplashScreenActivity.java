@@ -49,7 +49,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    Intent intent1 = new Intent(SplashScreenActivity.this, LoginForm.class);
+                    Intent intent1 = new Intent(SplashScreenActivity.this, LoginActivity.class);
                     startActivity(intent1);
                     Toast.makeText(SplashScreenActivity.this, "Email and password does not found", Toast.LENGTH_SHORT).show();
 
