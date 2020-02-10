@@ -19,8 +19,6 @@
         android:layout_height="60dp"
         android:layout_width="match_parent"/>
 
-
-
     <EditText
         android:id="@+id/etNameAI"
         android:layout_width="359dp"
@@ -49,8 +47,6 @@
         android:layout_marginTop="32dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>
-
-
 
     <TextView
         android:layout_marginTop="20dp"
@@ -92,6 +88,20 @@
         android:layout_marginRight="20dp"
         />
 
+
+    <EditText
+        android:id="@+id/etDayI"
+        android:layout_width="12dp"
+        android:layout_height="12dp"/>
+    <EditText
+        android:id="@+id/etMonthI"
+        android:layout_width="12dp"
+        android:layout_height="12dp"/>
+    <EditText
+        android:id="@+id/etYearI"
+        android:layout_width="12dp"
+        android:layout_height="12dp"/>
+
     <EditText
         android:id="@+id/etNoteAI"
         android:layout_width="359dp"
@@ -109,22 +119,22 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>
 
-    <TextView
-        android:id="@+id/tvDayI"
-        android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:visibility="invisible"
-        android:id="@+id/tvMonthI"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:visibility="invisible"
-        android:id="@+id/tvYearI"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
+<!--    <Button-->
+<!--        android:id="@+id/btnSaveIncome"-->
+<!--        android:text="Save"-->
+<!--        android:visibility="invisible"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_marginBottom="15dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="20sp"-->
+<!--        android:elevation="10dp"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        android:background="@color/white"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
     <Button
         android:id="@+id/btnSaveAI"
         android:text="Save"

@@ -47,17 +47,17 @@ public class IncomeInstrumentedTest {
         onView(withId(R.id.spAccountAI)).perform(click());
         onData(anything()).atPosition(0).perform(click());
         onView(withId(R.id.spAccountAI)).check(matches(withSpinnerText(containsString("Cash"))));
+
+
+        onView(withId(R.id.etDayI)).perform(typeText("30"), closeSoftKeyboard());
+        onView(withId(R.id.etMonthI)).perform(typeText("9"), closeSoftKeyboard());
+        onView(withId(R.id.etYearI)).perform(typeText("2020"), closeSoftKeyboard());
         onView(withId(R.id.etNoteAI)).perform(typeText("Salary of the month"), closeSoftKeyboard());
 
-        onView(withId(R.id.tvDayI)).perform(typeText("30"), closeSoftKeyboard());
-        onView(withId(R.id.tvMonthI)).perform(typeText("9"), closeSoftKeyboard());
-        onView(withId(R.id.tvYearI)).perform(typeText("2020"), closeSoftKeyboard());
-
-        onView(withId(R.id.btnSaveAI))
+        onView(withId(R.id.btnSaveIncome))
                 .perform(click());
 
-        onView(withId(R.id.tvTodayRefreshH))
-                .check(matches(isDisplayed()));
+
     }
 
 

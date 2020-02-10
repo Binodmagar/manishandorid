@@ -21,14 +21,14 @@ public class LoginTokenTest  {
     @Test
     public void testToken(){
         UserLoginAPI userLoginAPI = Url.getInstance().create(UserLoginAPI.class);
-        Call<SignUpResponse> call = userLoginAPI.checkUser("binod@gmail.com","admin12345");
+        Call<SignUpResponse> call = userLoginAPI.checkUser("roman@gmail.com","roman12345");
 
         try{
             Response<SignUpResponse> response = call.execute();
             Url.token += response.body().getToken();
             assertThat(Url.token, is(IsNull.notNullValue()));
         }catch (IOException e){
-            Log.d("failure", "" + e);
+//            Log.d("failure", "" + e);
             e.printStackTrace();
         }
     }

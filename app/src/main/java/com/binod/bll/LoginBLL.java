@@ -30,7 +30,7 @@ public class LoginBLL {
                 isSuccess = true;
             }
         }catch (IOException e){
-            Log.d("failure", " " + e);
+//            Log.d("failure", " " + e);
             e.printStackTrace();
         }
         return isSuccess;

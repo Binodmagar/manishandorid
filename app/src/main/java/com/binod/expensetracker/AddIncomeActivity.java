@@ -48,9 +48,9 @@ public class AddIncomeActivity extends AppCompatActivity {
         spIncomeAI = findViewById(R.id.spIncomeAI);
         spAccountAI = findViewById(R.id.spAccountAI);
         btnSaveAI = findViewById(R.id.btnSaveAI);
-        tvDayI = findViewById(R.id.tvDayI);
-        tvMonthI = findViewById(R.id.tvMonthI);
-        tvYearI = findViewById(R.id.tvYearI);
+        tvDayI = findViewById(R.id.etDayI);
+        tvMonthI = findViewById(R.id.etMonthI);
+        tvYearI = findViewById(R.id.etYearI);
 
         //setting up data in adapter
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,Income);
@@ -61,16 +61,16 @@ public class AddIncomeActivity extends AppCompatActivity {
         //for incomming data from intent
 
         Bundle extras = getIntent().getExtras();
-//        final String months = extras.getString("months");
-//        tvMonthI.setText(months);
-//        final String days = extras.getString("days");
-//        tvDayI.setText(days);
-//        final String years = extras.getString("years");
-//        tvYearI.setText(years);
-//        tvDateAI.setText(months + "-" + days + "-" + years);
-//        Intent incommingIntent = getIntent();
-//        String date = incommingIntent.getStringExtra("currentDate");
-//        tvDateAI.setText(date);
+        final String months = extras.getString("months");
+        tvMonthI.setText(months);
+        final String days = extras.getString("days");
+        tvDayI.setText(days);
+        final String years = extras.getString("years");
+        tvYearI.setText(years);
+        tvDateAI.setText(months + "-" + days + "-" + years);
+        Intent incommingIntent = getIntent();
+        String date = incommingIntent.getStringExtra("currentDate");
+        tvDateAI.setText(date);
 
         btnSaveAI.setOnClickListener(new View.OnClickListener() {
             @Override
