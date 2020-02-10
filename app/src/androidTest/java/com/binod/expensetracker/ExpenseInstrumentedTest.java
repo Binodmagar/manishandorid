@@ -13,6 +13,7 @@ import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -32,12 +33,12 @@ public class ExpenseInstrumentedTest {
     @Test
     public void addExpense(){
         onView(withId(R.id.etNameAE))
-                .perform(typeText("momo"))
-                .perform(closeSoftKeyboard());
+                .perform(typeText("momo"),closeSoftKeyboard());
+
 
         onView(withId(R.id.etAmountAE))
-                .perform(typeText(String.valueOf(100)))
-                .perform(closeSoftKeyboard());
+                .perform(typeText(String.valueOf(100)), closeSoftKeyboard());
+
 
         onView(withId(R.id.spCategoryAE)).perform(click());
         onData(anything()).atPosition(0).perform(click());
@@ -51,21 +52,22 @@ public class ExpenseInstrumentedTest {
                 .perform(typeText("2"))
                 .perform(closeSoftKeyboard());
 
+
         onView(withId(R.id.etMonthE))
                 .perform(typeText("2"))
                 .perform(closeSoftKeyboard());
+
         onView(withId(R.id.etYearE))
                 .perform(typeText("2020"))
                 .perform(closeSoftKeyboard());
 
+
         onView(withId(R.id.etNoteAE))
-                .perform(typeText("Todays breakfast"))
+                .perform(typeText("Today breakfast"))
                 .perform(closeSoftKeyboard());
 
-        onView(withId(R.id.btnSaveAE))
-                .perform(click());
 
-        onView(withId(R.id.tvTodayRefresh))
-                .check(matches(isDisplayed()));
+        onView(withId(R.id.btnSaveExpense))
+                .perform(click());
     }
 }

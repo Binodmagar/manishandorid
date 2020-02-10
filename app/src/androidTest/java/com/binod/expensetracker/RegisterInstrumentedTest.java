@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -27,15 +28,36 @@ public class RegisterInstrumentedTest {
 
     @Test
     public void registerUser(){
-        onView(withId(R.id.etFirstName)).perform(typeText("magar"), closeSoftKeyboard());
-        onView(withId(R.id.etLastName)).perform(typeText("magar"), closeSoftKeyboard());
-        onView(withId(R.id.etMobileNumber)).perform(typeText("9090001234"), closeSoftKeyboard());
-        onView(withId(R.id.etRemail)).perform(typeText("eragon@gmail.com"), closeSoftKeyboard());
-        onView(withId(R.id.etRpassword)).perform(typeText("eragon12345"), closeSoftKeyboard());
-        onView(withId(R.id.etConfirmPassword)).perform(typeText("eragon12345"), closeSoftKeyboard());
-        onView(withId(R.id.imgProfile)).perform(typeText("imageFile-1580640856878.png"), closeSoftKeyboard());
+        onView(withId(R.id.etFirstName))
+                .perform(typeText("magar"))
+                .perform(closeSoftKeyboard());
 
-        onView(withId(R.id.btnLogin))
-                .check(matches(isDisplayed()));
+        onView(withId(R.id.etLastName))
+                .perform(typeText("magar"))
+                .perform(closeSoftKeyboard());
+
+        onView(withId(R.id.etMobileNumber))
+                .perform(typeText("9090001234"))
+                .perform(closeSoftKeyboard());
+
+        onView(withId(R.id.etRemail))
+                .perform(typeText("eragon@gmail.com"))
+                .perform(closeSoftKeyboard());
+
+        onView(withId(R.id.etRpassword))
+                .perform(typeText("eragon12345"))
+                .perform(closeSoftKeyboard());
+
+        onView(withId(R.id.etConfirmPassword))
+                .perform(typeText("eragon12345"))
+                .perform(closeSoftKeyboard());
+
+
+        onView(withId(R.id.imgProfile))
+                .perform(typeText("imageFile-1580640856878.png"))
+                .perform(closeSoftKeyboard());
+
+        onView(withId(R.id.btnSignUp))
+                .perform(click());
     }
 }

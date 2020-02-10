@@ -27,11 +27,16 @@ public class LoginInstrumentedTest {
 
     @Test
     public void checkUser(){
-        onView(withId(R.id.etEmail)).perform(typeText("binod@gmail.com"),closeSoftKeyboard());
-        onView(withId(R.id.etPassword)).perform(typeText("admin12345"),closeSoftKeyboard());
-        onView(withId(R.id.btnLogin)).perform(click());
+        onView(withId(R.id.etEmail))
+                .perform(typeText("roman@gmail.com"))
+                .perform(closeSoftKeyboard());
 
-        onView(withId(R.id.tvTodayRefreshH))
-                .check(matches(isDisplayed()));
+        onView(withId(R.id.etPassword))
+                .perform(typeText("roman12345"))
+                .perform(closeSoftKeyboard());
+
+        onView(withId(R.id.btnLogin))
+                .perform(click());
+
     }
 }

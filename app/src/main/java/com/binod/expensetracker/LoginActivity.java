@@ -51,8 +51,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin = findViewById(R.id.btnLogin);
         tvCreateAccount = findViewById(R.id.tvCreateAccount);
 
-        etEmail.setText("roman@gmail.com");
-        etPassword.setText("roman12345");
+        //etEmail.setText("roman@gmail.com");
+        //etPassword.setText("roman12345");
         //listener
         btnLogin.setOnClickListener(this);
         tvCreateAccount.setOnClickListener(this);
