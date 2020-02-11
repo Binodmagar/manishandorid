@@ -11,16 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.binod.expensetracker.R;
 import com.binod.model.Expense;
-import com.binod.model.Income;
 
 import java.util.List;
 
-public class TransactionAdpater extends RecyclerView.Adapter<TransactionAdpater.TransactionViewHolder> {
+public class HomeExpenseAdpater extends RecyclerView.Adapter<HomeExpenseAdpater.TransactionViewHolder> {
 
     Context context;
     List<Expense> expenseList;
 
-    public TransactionAdpater(Context context, List<Expense> expenseList) {
+    public HomeExpenseAdpater(Context context, List<Expense> expenseList) {
         this.context = context;
         this.expenseList = expenseList;
     }
@@ -29,7 +28,7 @@ public class TransactionAdpater extends RecyclerView.Adapter<TransactionAdpater.
     @Override
     public TransactionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_alltransaction,parent,false);
+                .inflate(R.layout.activity_expensehome,parent,false);
         return new TransactionViewHolder(view);
     }
 
@@ -37,11 +36,9 @@ public class TransactionAdpater extends RecyclerView.Adapter<TransactionAdpater.
     public void onBindViewHolder(@NonNull TransactionViewHolder holder, int position) {
 
         Expense expense = expenseList.get(position);
-        holder.tvAllName.setText("Expense Name: " + expense.getName());
-        holder.tvAllAmount.setText("Rs: " + expense.getAmount() + "");
-        holder.tvAllCat.setText("Category: " + expense.getCategory());
-        holder.tvAllAcc.setText("Account: " + expense.getAccount());
-        holder.tvAllDesc.setText("Description: " + expense.getDescription());
+        holder.tvNameHEO.setText(expense.getName());
+        holder.tvAmountHEO.setText("Rs " + expense.getAmount() + "");
+        holder.tvDesHEO.setText(expense.getDescription());
 //
 //        Income income =  incomeList.get(position);
 //        holder.tvAllName.setText("Income Name: " + income.getName());
@@ -59,16 +56,14 @@ public class TransactionAdpater extends RecyclerView.Adapter<TransactionAdpater.
 
     public class  TransactionViewHolder extends RecyclerView.ViewHolder {
         //declaration
-        TextView tvAllName,tvAllAmount,tvAllCat,tvAllAcc,tvAllDesc;
+        TextView tvNameHEO,tvAmountHEO,tvDesHEO;
         public TransactionViewHolder(@NonNull View itemView) {
             super(itemView);
 
             //binding
-            tvAllName = itemView.findViewById(R.id.tvAllName);
-            tvAllAmount = itemView.findViewById(R.id.tvAllAmount);
-            tvAllCat = itemView.findViewById(R.id.tvAllCat);
-            tvAllAcc = itemView.findViewById(R.id.tvAllAcc);
-            tvAllDesc = itemView.findViewById(R.id.tvAllDes);
+            tvNameHEO = itemView.findViewById(R.id.tvNameHEO);
+            tvAmountHEO = itemView.findViewById(R.id.tvAmountHEO);
+            tvDesHEO = itemView.findViewById(R.id.tvDesHEO);
         }
     }
 }

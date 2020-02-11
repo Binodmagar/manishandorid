@@ -11,18 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.binod.expensetracker.R;
 import com.binod.model.Expense;
-import com.binod.model.Income;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
-public class ExpenseHomeAdapter extends RecyclerView.Adapter<ExpenseHomeAdapter.ExpenseHomeViewHolder>{
+public class TodayExpenseHomeAdapter extends RecyclerView.Adapter<TodayExpenseHomeAdapter.ExpenseHomeViewHolder>{
 
     Context context;
     List<Expense> expenseList;
 
-    public ExpenseHomeAdapter(Context context, List<Expense> expenseList) {
+    public TodayExpenseHomeAdapter(Context context, List<Expense> expenseList) {
         this.context = context;
         this.expenseList = expenseList;
     }

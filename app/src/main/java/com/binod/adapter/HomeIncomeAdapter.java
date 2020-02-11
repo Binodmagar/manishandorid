@@ -14,12 +14,12 @@ import com.binod.model.Income;
 
 import java.util.List;
 
-public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeViewHolder> {
+public class HomeIncomeAdapter extends RecyclerView.Adapter<HomeIncomeAdapter.IncomeViewHolder> {
 
     Context context;
     List<Income> incomeList;
 
-    public IncomeAdapter(Context context, List<Income> incomeList) {
+    public HomeIncomeAdapter(Context context, List<Income> incomeList) {
         this.context = context;
         this.incomeList = incomeList;
     }
@@ -28,19 +28,16 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
     @Override
     public IncomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_alltransactionincome,parent,false);
+                .inflate(R.layout.activity_incomehome,parent,false);
         return new IncomeViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull IncomeViewHolder holder, int position) {
         Income income = incomeList.get(position);
-        holder.tvDayFoodI.setText("Income Name: " +income.getName());
-        holder.tvDayAmountI.setText("Rs: " + income.getAmount() + "");
-        holder.tvDayCatI.setText("Category: " + income.getCategory());
-        holder.tvDayAccountI.setText("Account: " + income.getAccount());
-        holder.tvDayNoteI.setText("Description: " + income.getDescription());
-
+        holder.tvNameHIO.setText(income.getName());
+        holder.tvAmountHIO.setText("Rs " + income.getAmount() + "");
+        holder.tvDesHIO.setText(income.getDescription());
     }
 
     @Override
@@ -49,15 +46,13 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
     }
 
     public class IncomeViewHolder extends RecyclerView.ViewHolder {
-        TextView tvDayFoodI,tvDayAmountI,tvDayNoteI, tvDayCatI, tvDayAccountI;
+        TextView tvNameHIO,tvAmountHIO,tvDesHIO;
         public IncomeViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvDayFoodI = itemView.findViewById(R.id.tvDayFoodI);
-            tvDayAmountI = itemView.findViewById(R.id.tvDayAmountI);
-            tvDayCatI = itemView.findViewById(R.id.tvDayCatI);
-            tvDayAccountI = itemView.findViewById(R.id.tvDayAccountI);
-            tvDayNoteI = itemView.findViewById(R.id.tvDayNoteI);
+            tvNameHIO = itemView.findViewById(R.id.tvNameHIO);
+            tvAmountHIO = itemView.findViewById(R.id.tvAmountHIO);
+            tvDesHIO = itemView.findViewById(R.id.tvDesHIO);
         }
     }
 

@@ -12,12 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.binod.adapter.TransactionAdpater;
+import com.binod.adapter.HomeExpenseAdpater;
 import com.binod.api.ExpenseAPI;
 import com.binod.expensetracker.R;
-import com.binod.expensetracker.TransactionsActivity;
 import com.binod.model.Expense;
-import com.binod.model.Income;
 import com.binod.url.Url;
 
 import java.util.List;
@@ -63,8 +61,8 @@ public class ExpenseFragment extends Fragment {
                 }
 
                 List<Expense> expenseList = response.body();
-                TransactionAdpater transactionAdpater = new TransactionAdpater(getActivity(), expenseList);
-                rvExpenseFragment.setAdapter(transactionAdpater);
+                HomeExpenseAdpater homeExpenseAdpater = new HomeExpenseAdpater(getActivity(), expenseList);
+                rvExpenseFragment.setAdapter(homeExpenseAdpater);
                 rvExpenseFragment.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
 
             }
@@ -73,8 +71,6 @@ public class ExpenseFragment extends Fragment {
             public void onFailure(Call<List<Expense>> call, Throwable t) {
 
                 Toast.makeText(getActivity(), "failed" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
-
             }
         });
     }

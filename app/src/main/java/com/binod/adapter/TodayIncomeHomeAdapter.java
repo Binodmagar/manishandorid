@@ -14,12 +14,12 @@ import com.binod.model.Income;
 
 import java.util.List;
 
-public class IncomeHomeAdapter extends RecyclerView.Adapter<IncomeHomeAdapter.IncomeHomeViewHolder> {
+public class TodayIncomeHomeAdapter extends RecyclerView.Adapter<TodayIncomeHomeAdapter.IncomeHomeViewHolder> {
 
     Context context;
     List<Income> incomeList;
 
-    public IncomeHomeAdapter(Context context, List<Income> incomeList) {
+    public TodayIncomeHomeAdapter(Context context, List<Income> incomeList) {
         this.context = context;
         this.incomeList = incomeList;
     }

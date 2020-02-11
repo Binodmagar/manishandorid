@@ -20,7 +20,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.binod.api.UserLoginAPI;
+import com.binod.api.UserAPI;
 import com.binod.bll.RegisterBLL;
 import com.binod.serverresponse.ImageResponse;
 import com.binod.strictmode.StrictModeClass;
@@ -54,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         btnSignUp = findViewById(R.id.btnSignUp);
         tvAlreadyUser = findViewById(R.id.tvAlreadyUser);
 
-        //binding
+//        //binding
         imgProfile = findViewById(R.id.imgProfile);
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
@@ -170,8 +170,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"),file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("imageFile", file.getName(), requestBody);
 
-        UserLoginAPI userLoginAPI = Url.getInstance().create(UserLoginAPI.class);
-        Call<ImageResponse> responseCall = userLoginAPI.uploadImage(body);
+        UserAPI userAPI = Url.getInstance().create(UserAPI.class);
+        Call<ImageResponse> responseCall = userAPI.uploadImage(body);
 
         StrictModeClass.StrictMode();
 
@@ -194,7 +194,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String email = etRemail.getText().toString();
         String password = etRpassword.getText().toString();
 
-        //UserLogin userLogin = new UserLogin(firstName, lastName, mobileNumber, email, password, imgName);
+        //User userLogin = new User(firstName, lastName, mobileNumber, email, password, imgName);
         RegisterBLL registerBLL = new RegisterBLL(firstName, lastName, mobileNumber, email, password, imgName);
 
         CheckPermission();
@@ -206,25 +206,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }else{
             Toast.makeText(RegisterActivity.this, "Failed", Toast.LENGTH_SHORT).show();
         }
-
-//        UserLoginAPI userLoginAPI = Url.getInstance().create(UserLoginAPI.class);
-//        Call<SignUpResponse> signUpResponseCall = userLoginAPI.registerUser(userLogin);
-//        CheckPermission();
-//        signUpResponseCall.enqueue(new Callback<SignUpResponse>() {
-//            @Override
-//            public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
-//                if(!response.isSuccessful()){
-//                    Toast.makeText(RegisterActivity.this, "Error code", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                Toast.makeText(RegisterActivity.this, "Registered success!!", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<SignUpResponse> call, Throwable t) {
-//                Toast.makeText(RegisterActivity.this, "Error code" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 
     private void CheckPermission() {

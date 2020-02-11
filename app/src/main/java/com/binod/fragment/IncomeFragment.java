@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.binod.adapter.IncomeAdapter;
+import com.binod.adapter.HomeIncomeAdapter;
 import com.binod.api.IncomeAPI;
 import com.binod.expensetracker.R;
 import com.binod.model.Income;
@@ -59,8 +59,8 @@ public class IncomeFragment extends Fragment {
                 }
 
                 List<Income> incomes = response.body();
-                IncomeAdapter incomeAdapter = new IncomeAdapter(getContext(), incomes);
-                rcIncome.setAdapter(incomeAdapter);
+                HomeIncomeAdapter homeIncomeAdapter = new HomeIncomeAdapter(getContext(), incomes);
+                rcIncome.setAdapter(homeIncomeAdapter);
                 rcIncome.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
             }
 
