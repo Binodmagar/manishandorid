@@ -28,18 +28,18 @@ public class IncomeHomeAdapter extends RecyclerView.Adapter<IncomeHomeAdapter.In
     @Override
     public IncomeHomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_todaytransaction,parent,false);
+                .inflate(R.layout.activity_todaytransactionincome,parent,false);
         return new IncomeHomeViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull IncomeHomeViewHolder holder, int position) {
         Income income = incomeList.get(position);
-        holder.tvNameH.setText("Income name: " + income.getName());
-        holder.tvAmountH.setText("Rs: " + income.getAmount());
-        holder.tvAccH.setText("Account: " + income.getAccount());
-        holder.tvCatH.setText("Category: " + income.getCategory());
-        holder.tvDesH.setText("Description: " + income.getDescription());
+        holder.tvNameHI.setText(income.getName());
+        holder.tvAmountHI.setText("Rs " + income.getAmount());
+//        holder.tvAccH.setText("Account: " + income.getAccount());
+//        holder.tvCatH.setText("Category: " + income.getCategory());
+        holder.tvDesHI.setText(income.getDescription());
     }
 
     @Override
@@ -49,15 +49,15 @@ public class IncomeHomeAdapter extends RecyclerView.Adapter<IncomeHomeAdapter.In
 
     public class IncomeHomeViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvNameH, tvCatH, tvAccH, tvAmountH,tvDesH;
+        TextView tvNameHI, tvCatH, tvAccH, tvAmountHI,tvDesHI;
         public IncomeHomeViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvNameH = itemView.findViewById(R.id.tvNameH);
-            tvAccH = itemView.findViewById(R.id.tvAccH);
-            tvCatH = itemView.findViewById(R.id.tvCatH);
-            tvAmountH = itemView.findViewById(R.id.tvAmountH);
-            tvDesH = itemView.findViewById(R.id.tvDesH);
+            tvNameHI = itemView.findViewById(R.id.tvNameHI);
+//            tvAccH = itemView.findViewById(R.id.tvAccH);
+//            tvCatH = itemView.findViewById(R.id.tvCatH);
+            tvAmountHI = itemView.findViewById(R.id.tvAmountHI);
+            tvDesHI = itemView.findViewById(R.id.tvDesHI);
 
         }
     }

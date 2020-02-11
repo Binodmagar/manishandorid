@@ -38,11 +38,11 @@ public class ExpenseHomeAdapter extends RecyclerView.Adapter<ExpenseHomeAdapter.
     @Override
     public void onBindViewHolder(@NonNull ExpenseHomeViewHolder holder, int position) {
         Expense expense = expenseList.get(position);
-        holder.tvNameH.setText("Expense: " + expense.getName());
-        holder.tvCatH.setText("Category: " + expense.getCategory());
-        holder.tvAccH.setText("Account: " + expense.getAccount());
-        holder.tvAmountH.setText("Rs: " + expense.getAmount() + "");
-        holder.tvDesH.setText("Description: " + expense.getDescription());
+        holder.tvNameH.setText(expense.getName());
+//        holder.tvCatH.setText("Category: " + expense.getCategory());
+//        holder.tvAccH.setText("Account: " + expense.getAccount());
+        holder.tvAmountH.setText("Rs " + expense.getAmount() + "");
+        holder.tvDesH.setText(expense.getDescription());
     }
 
     @Override
@@ -57,8 +57,8 @@ public class ExpenseHomeAdapter extends RecyclerView.Adapter<ExpenseHomeAdapter.
             super(itemView);
 
             tvNameH = itemView.findViewById(R.id.tvNameH);
-            tvAccH = itemView.findViewById(R.id.tvAccH);
-            tvCatH = itemView.findViewById(R.id.tvCatH);
+//            tvAccH = itemView.findViewById(R.id.tvAccH);
+//            tvCatH = itemView.findViewById(R.id.tvCatH);
             tvAmountH = itemView.findViewById(R.id.tvAmountH);
             tvDesH = itemView.findViewById(R.id.tvDesH);
         }
