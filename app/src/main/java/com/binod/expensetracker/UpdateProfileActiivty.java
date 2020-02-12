@@ -2,8 +2,11 @@ package com.binod.expensetracker;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.loader.content.CursorLoader;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -17,8 +20,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.binod.api.UserLoginAPI;
-import com.binod.model.UserLogin;
+import com.binod.api.UserAPI;
+import com.binod.bll.UpdateProfile;
+import com.binod.model.User;
+import com.binod.notification.NotificationChannel;
 import com.binod.serverresponse.ImageResponse;
 import com.binod.strictmode.StrictModeClass;
 import com.binod.url.Url;
@@ -37,6 +42,10 @@ import retrofit2.Response;
 
 public class UpdateProfileActiivty extends AppCompatActivity {
 
+
+    private NotificationManagerCompat notificationManagerCompat;
+
+    int count = 0;
     CircleImageView imgProfileUP;
     EditText etFirstNameUP, etLastNameUP, etMobileNumberUP, etEmailUP, etPasswordUP;
     Button btnUpdate;
@@ -70,35 +79,7 @@ public class UpdateProfileActiivty extends AppCompatActivity {
             public void onClick(View v) {
                 if(validation()){
                     saveImage();
-
-                    String firstName = etFirstNameUP.getText().toString();
-                    String lastName = etLastNameUP.getText().toString();
-                    String mobile = etMobileNumberUP.getText().toString();
-                    String email = etEmailUP.getText().toString();
-                    String password = etPasswordUP.getText().toString();
-
-                    UserLogin userLogin = new UserLogin(firstName, lastName, mobile, email, password, imagePath);
-
-                    UserLoginAPI userLoginAPI = Url.getInstance().create(UserLoginAPI.class);
-                    Call<UserLogin> userLoginAPICall = userLoginAPI.updateUser(Url.token, userLogin);
-
-                    userLoginAPICall.enqueue(new Callback<UserLogin>() {
-                        @Override
-                        public void onResponse(Call<UserLogin> call, Response<UserLogin> response) {
-
-                            if(!response.isSuccessful()){
-                                Toast.makeText(UpdateProfileActiivty.this, "Error Code", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                            Toast.makeText(UpdateProfileActiivty.this, "Profile Updated successfully!!", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onFailure(Call<UserLogin> call, Throwable t) {
-                            Toast.makeText(UpdateProfileActiivty.this, "Error code" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
+                    updateUser();
                 }else {
                     Toast.makeText(UpdateProfileActiivty.this, "Please provide valid credential!", Toast.LENGTH_SHORT).show();
                 }
@@ -110,6 +91,7 @@ public class UpdateProfileActiivty extends AppCompatActivity {
             public void onClick(View v) {
                 Logout();
                 Intent intent = new Intent(UpdateProfileActiivty.this, LoginActivity.class);
+                DisplayNotification();
                 startActivity(intent);
 
             }
@@ -119,12 +101,12 @@ public class UpdateProfileActiivty extends AppCompatActivity {
 
 
     private void loadCurrentUser(){
-        UserLoginAPI userLoginAPI = Url.getInstance().create(UserLoginAPI.class);
-        Call<UserLogin> userLoginCall = userLoginAPI.getUserDetails(Url.token);
+        UserAPI userAPI = Url.getInstance().create(UserAPI.class);
+        Call<User> userLoginCall = userAPI.getUserDetails(Url.token);
 
-        userLoginCall.enqueue(new Callback<UserLogin>() {
+        userLoginCall.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<UserLogin> call, Response<UserLogin> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 if(!response.isSuccessful()){
                     Toast.makeText(UpdateProfileActiivty.this, "code", Toast.LENGTH_SHORT).show();
                     return;
@@ -132,6 +114,7 @@ public class UpdateProfileActiivty extends AppCompatActivity {
 
                 String imgPath = Url.imagePath + response.body().getImage();
                 Picasso.get().load(imgPath).into(imgProfileUP);
+
                 String firstName = response.body().getFirstName();
                 etFirstNameUP.setText(firstName);
                 String lastName = response.body().getLastName();
@@ -145,15 +128,12 @@ public class UpdateProfileActiivty extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<UserLogin> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(UpdateProfileActiivty.this, "Erros" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void updateUser(){
-
-    }
     public void ImageBrowse() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
@@ -193,8 +173,8 @@ public class UpdateProfileActiivty extends AppCompatActivity {
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"),file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("imageFile", file.getName(), requestBody);
 
-        UserLoginAPI userLoginAPI = Url.getInstance().create(UserLoginAPI.class);
-        Call<ImageResponse> responseCall = userLoginAPI.uploadImage(body);
+        UserAPI userAPI = Url.getInstance().create(UserAPI.class);
+        Call<ImageResponse> responseCall = userAPI.uploadImage(body);
 
         StrictModeClass.StrictMode();
 
@@ -210,6 +190,23 @@ public class UpdateProfileActiivty extends AppCompatActivity {
         }
     }
 
+
+    private void updateUser(){
+        String firstName = etFirstNameUP.getText().toString();
+        String lastName = etLastNameUP.getText().toString();
+        String mobile = etMobileNumberUP.getText().toString();
+        String email = etEmailUP.getText().toString();
+        String password = etPasswordUP.getText().toString();
+
+        UpdateProfile updateProfile = new UpdateProfile(firstName, lastName, mobile, email, password, imgName );
+
+        if(updateProfile.updateUser(this)){
+            Toast.makeText(UpdateProfileActiivty.this, "Update success", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(UpdateProfileActiivty.this, "Cannot update profile", Toast.LENGTH_SHORT).show();
+            etFirstNameUP.requestFocus();
+        }
+    }
     public boolean validation(){
         boolean status = true;
         if(TextUtils.isEmpty(etFirstNameUP.getText().toString())){
@@ -241,7 +238,6 @@ public class UpdateProfileActiivty extends AppCompatActivity {
     }
 
     private void Logout(){
-        String token = Url.token;
         SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("token", "");
@@ -249,5 +245,15 @@ public class UpdateProfileActiivty extends AppCompatActivity {
         editor.putString("Password","");
         editor.commit();
 
+    }
+
+    private void DisplayNotification(){
+        Notification notification = new NotificationCompat.Builder(this, NotificationChannel.CHANNEL_1)
+                .setSmallIcon(R.drawable.notification)
+                .setContentTitle("Logout Message")
+                .setContentText("logout success")
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
+        notificationManagerCompat.notify(count++, notification);
     }
 }

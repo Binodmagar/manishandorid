@@ -42,7 +42,6 @@ public class ExpenseBLL {
         String token = sharedPreferences.getString("token","");
 
         ExpenseAPI expenseAPI = Url.getInstance().create(ExpenseAPI.class);
-        //Expense expense = new Expense();
         Call<Expense> expenseCall = expenseAPI.addProduct(token, name, amount, category, account, days, months, years, description);
 
         try{

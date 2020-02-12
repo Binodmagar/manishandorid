@@ -1,6 +1,6 @@
 package com.binod.api;
 
-import com.binod.model.UserLogin;
+import com.binod.model.User;
 import com.binod.serverresponse.ImageResponse;
 import com.binod.serverresponse.SignUpResponse;
 
@@ -16,10 +16,10 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
 
-public interface UserLoginAPI {
+public interface UserAPI {
 
     @POST("users/register")
-    Call<SignUpResponse> registerUser(@Body UserLogin userLogin);
+    Call<SignUpResponse> registerUser(@Body User user);
 
     @FormUrlEncoded
     @POST("users/login")
@@ -30,10 +30,12 @@ public interface UserLoginAPI {
     Call<ImageResponse> uploadImage(@Part MultipartBody.Part img);
 
     @GET("users/me")
-    Call<UserLogin> getUserDetails(@Header("Authorization") String token);
+    Call<User> getUserDetails(@Header("Authorization") String token);
 
+
+    @FormUrlEncoded
     @PUT("users/me")
-    Call<UserLogin> updateUser(@Header("Authorization") String token, @Body UserLogin userLogin);
-
+    Call<User> updateUser(@Header("Authorization") String token, @Field("firstName") String firstName, @Field("lastName") String lastName, @Field("mobileNumber") String mobileNumber,
+                          @Field("email") String email, @Field("password") String password, @Field("image") String image);
 
 }

@@ -40,7 +40,6 @@ public class IncomeBLL {
         String token = sharedPreferences.getString("token","");
 
         IncomeAPI incomeAPI = Url.getInstance().create(IncomeAPI.class);
-        //Income income = new Income(name, amount, category, account, days, months, years, description);
         Call<Income> incomeCall = incomeAPI.addIncome(token, name, amount, category, account, days, months, years, description);
 
         try{

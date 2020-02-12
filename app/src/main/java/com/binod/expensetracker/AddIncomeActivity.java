@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,12 +22,12 @@ public class AddIncomeActivity extends AppCompatActivity {
     Spinner spIncomeAI, spAccountAI;
     EditText etNameAI,etAmountAI,etNoteAI;
     Button btnSaveAI;
-    TextView tvDateAI, tvDayI, tvMonthI, tvYearI;
+    TextView tvDateAI, etDayI, etMonthI, etYearI;
 
     public static final String Income[] = {
             "Salary",
             "Bonus",
-            "Vacation Allowance"
+            "Allowance"
     };
 
     public static final String Account[] = {
@@ -48,9 +49,9 @@ public class AddIncomeActivity extends AppCompatActivity {
         spIncomeAI = findViewById(R.id.spIncomeAI);
         spAccountAI = findViewById(R.id.spAccountAI);
         btnSaveAI = findViewById(R.id.btnSaveAI);
-        tvDayI = findViewById(R.id.etDayI);
-        tvMonthI = findViewById(R.id.etMonthI);
-        tvYearI = findViewById(R.id.etYearI);
+        etDayI = findViewById(R.id.etDayI);
+        etMonthI = findViewById(R.id.etMonthI);
+        etYearI = findViewById(R.id.etYearI);
 
         //setting up data in adapter
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,Income);
@@ -58,19 +59,31 @@ public class AddIncomeActivity extends AppCompatActivity {
         ArrayAdapter arrayAdapter1 = new ArrayAdapter(this, android.R.layout.simple_list_item_1, Account);
         spAccountAI.setAdapter(arrayAdapter1);
 
-        //for incomming data from intent
+        //for incomming date from add income button
+        Bundle extra = getIntent().getExtras();
+        String thisDay = extra.getString("thisDay");
+        etDayI.setText(thisDay);
+        String thisMonth = extra.getString("thisMonth");
+        etMonthI.setText(thisMonth);
+        String thisYear = extra.getString("thisYear");
+        etYearI.setText(thisYear);
+        String allDate = thisDay + "-" + thisMonth + "-" + thisYear;
+        tvDateAI.setText(allDate);
 
+        //for incomming data from intent
         Bundle extras = getIntent().getExtras();
         final String months = extras.getString("months");
-        tvMonthI.setText(months);
+        if(thisMonth==null){
+            etMonthI.setText(months);
+        }
         final String days = extras.getString("days");
-        tvDayI.setText(days);
+        if(thisDay==null){
+            etDayI.setText(days);
+        }
         final String years = extras.getString("years");
-        tvYearI.setText(years);
-        tvDateAI.setText(months + "-" + days + "-" + years);
-        Intent incommingIntent = getIntent();
-        String date = incommingIntent.getStringExtra("currentDate");
-        tvDateAI.setText(date);
+        if(thisYear==null){
+            etYearI.setText(years);
+        }
 
         btnSaveAI.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,9 +127,9 @@ public class AddIncomeActivity extends AppCompatActivity {
         int amount = Integer.parseInt(etAmountAI.getText().toString());
         String income = spIncomeAI.getSelectedItem().toString();
         String account = spAccountAI.getSelectedItem().toString();
-        String days = tvDayI.getText().toString();
-        String months = tvMonthI.getText().toString();
-        String years = tvYearI.getText().toString();
+        String days = etDayI.getText().toString();
+        String months = etMonthI.getText().toString();
+        String years = etYearI.getText().toString();
         String note = etNoteAI.getText().toString();
 
 
@@ -128,8 +141,6 @@ public class AddIncomeActivity extends AppCompatActivity {
             etNoteAI.setText("");
             etNameAI.requestFocus();
             Toast.makeText(this, "Incomes added successfully", Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(AddIncomeActivity.this, TransactionsActivity.class);
-//            startActivity(intent);
         }else{
             Toast.makeText(this, "Cannot add income", Toast.LENGTH_SHORT).show();
             etNameAI.requestFocus();

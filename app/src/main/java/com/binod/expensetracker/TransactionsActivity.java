@@ -12,8 +12,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.binod.adapter.IncomeAdapter;
-import com.binod.adapter.TransactionAdpater;
+import com.binod.adapter.HomeIncomeAdapter;
+import com.binod.adapter.HomeExpenseAdpater;
+import com.binod.adapter.TransactionExpenseAdapter;
+import com.binod.adapter.TransactionIncomeAdapter;
 import com.binod.api.ExpenseAPI;
 import com.binod.api.IncomeAPI;
 import com.binod.model.Expense;
@@ -106,8 +108,8 @@ public class TransactionsActivity extends AppCompatActivity {
                 }
 
                 List<Expense> expenseList = response.body();
-                TransactionAdpater transactionAdpater = new TransactionAdpater(TransactionsActivity.this, expenseList);
-                rcTransactionDay.setAdapter(transactionAdpater);
+                TransactionExpenseAdapter transactionExpenseAdapter = new TransactionExpenseAdapter(TransactionsActivity.this, expenseList);
+                rcTransactionDay.setAdapter(transactionExpenseAdapter);
                 rcTransactionDay.setLayoutManager(new LinearLayoutManager(TransactionsActivity.this,LinearLayoutManager.VERTICAL,false));
 
             }
@@ -132,8 +134,8 @@ public class TransactionsActivity extends AppCompatActivity {
                 }
 
                 List<Income> incomeList = response.body();
-                IncomeAdapter incomeAdapter = new IncomeAdapter(TransactionsActivity.this, incomeList);
-                rcTransactionDay1.setAdapter(incomeAdapter);
+                TransactionIncomeAdapter transactionIncomeAdapter = new TransactionIncomeAdapter(TransactionsActivity.this, incomeList);
+                rcTransactionDay1.setAdapter(transactionIncomeAdapter);
                 rcTransactionDay1.setLayoutManager(new LinearLayoutManager(TransactionsActivity.this, LinearLayoutManager.VERTICAL, false));
             }
 

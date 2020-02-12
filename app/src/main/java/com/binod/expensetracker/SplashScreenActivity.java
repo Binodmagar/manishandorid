@@ -44,8 +44,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                 LoginBLL loginBLL = new LoginBLL();
                 StrictModeClass.StrictMode();
                 if (loginBLL.checkUser(email, password)) {
-                    DisplayNotification();
                     Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                    DisplayNotification();
                     startActivity(intent);
                     finish();
                 } else {

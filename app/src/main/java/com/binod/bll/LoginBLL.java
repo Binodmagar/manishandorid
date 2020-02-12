@@ -1,9 +1,6 @@
 package com.binod.bll;
 
-import android.content.SharedPreferences;
-import android.util.Log;
-
-import com.binod.api.UserLoginAPI;
+import com.binod.api.UserAPI;
 import com.binod.serverresponse.SignUpResponse;
 import com.binod.url.Url;
 
@@ -19,8 +16,8 @@ public class LoginBLL {
 
     public boolean checkUser(String email, String password) {
 
-        UserLoginAPI userLoginAPI = Url.getInstance().create(UserLoginAPI.class);
-        Call<SignUpResponse> userCall = userLoginAPI.checkUser(email, password);
+        UserAPI userAPI = Url.getInstance().create(UserAPI.class);
+        Call<SignUpResponse> userCall = userAPI.checkUser(email, password);
 
         try {
             Response<SignUpResponse> loginResponse = userCall.execute();

@@ -25,11 +25,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private NotificationManagerCompat notificationManagerCompat;
 
+    int count = 0;
       EditText etEmail, etPassword;
       Button btnLogin;
       TextView tvCreateAccount;
 
-    int count = 0;
 
 
     public void Login_Fragment(){
@@ -65,7 +65,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btnLogin:
                 if(checkValidation()){
                     login();
-                    DisplayNotification();
                     SaveEmailPassword();
                 }else{
                     Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
@@ -102,6 +101,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         StrictModeClass.StrictMode();
         if(loginBLL.checkUser(email, password)){
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            DisplayNotification();
             startActivity(intent);
             finish();
         }else {

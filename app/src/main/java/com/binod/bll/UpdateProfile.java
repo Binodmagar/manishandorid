@@ -1,5 +1,8 @@
 package com.binod.bll;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.binod.api.UserAPI;
 import com.binod.model.User;
 import com.binod.serverresponse.SignUpResponse;
@@ -10,8 +13,7 @@ import java.io.IOException;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class RegisterBLL {
-
+public class UpdateProfile {
     private  String firstName;
     private  String lastName;
     private  String mobileNumber;
@@ -20,7 +22,7 @@ public class RegisterBLL {
     private  String image;
     boolean issuccess = false;
 
-    public RegisterBLL(String firstName, String lastName, String mobileNumber, String email, String password, String image) {
+    public UpdateProfile(String firstName, String lastName, String mobileNumber, String email, String password, String image) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.mobileNumber = mobileNumber;
@@ -29,15 +31,16 @@ public class RegisterBLL {
         this.image = image;
     }
 
-    public boolean addUser (){
-        UserAPI userAPI = Url.getInstance().create(UserAPI.class);
+    public boolean updateUser (Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("User", context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token","");
 
-        User user = new User(firstName, lastName, mobileNumber, email, password, image);
-        Call<SignUpResponse> userCall = userAPI.registerUser(user);
+        UserAPI userAPI = Url.getInstance().create(UserAPI.class);
+        Call<User> userCall = userAPI.updateUser(token, firstName, lastName, mobileNumber, email, password, image);
 
         try {
-            Response<SignUpResponse> response = userCall.execute();
-            if(response.isSuccessful() && response.body().getStatus().equals("Register successfully!!")){
+            Response<User> response = userCall.execute();
+            if(response.isSuccessful()){
                 issuccess=true;
             }else {
                 issuccess = false;

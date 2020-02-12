@@ -1,8 +1,6 @@
 package com.binod.expensetracker;
 
-import android.util.Log;
-
-import com.binod.api.UserLoginAPI;
+import com.binod.api.UserAPI;
 import com.binod.serverresponse.SignUpResponse;
 import com.binod.url.Url;
 
@@ -20,8 +18,8 @@ import static org.junit.Assert.assertThat;
 public class LoginTokenTest  {
     @Test
     public void testToken(){
-        UserLoginAPI userLoginAPI = Url.getInstance().create(UserLoginAPI.class);
-        Call<SignUpResponse> call = userLoginAPI.checkUser("roman@gmail.com","roman12345");
+        UserAPI userAPI = Url.getInstance().create(UserAPI.class);
+        Call<SignUpResponse> call = userAPI.checkUser("roman@gmail.com","roman12345");
 
         try{
             Response<SignUpResponse> response = call.execute();

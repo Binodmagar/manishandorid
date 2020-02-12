@@ -8,7 +8,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,13 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.binod.adapter.ExpenseHomeAdapter;
-import com.binod.adapter.IncomeHomeAdapter;
-import com.binod.adapter.TransactionAdpater;
+import com.binod.adapter.TodayExpenseHomeAdapter;
+import com.binod.adapter.TodayIncomeHomeAdapter;
 import com.binod.adapter.ViewPagerAdapter;
 import com.binod.api.ExpenseAPI;
 import com.binod.api.IncomeAPI;
-import com.binod.fragment.BalanceFragment;
 import com.binod.fragment.ExpenseFragment;
 import com.binod.fragment.IncomeFragment;
 import com.binod.model.Expense;
@@ -72,10 +69,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
-                String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+
+                String thisYear = (calendar.get(Calendar.YEAR)) + "";
+                Log.d(thisYear, "thisYear : " + thisYear);
+
+                String thisMonth = (calendar.get(Calendar.MONTH) + 1) + "";
+                Log.d(thisMonth, "thisMonth : " + thisMonth);
+
+                String thisDay = (calendar.get(Calendar.DAY_OF_MONTH)) + "";
+                Log.d(thisDay,"thisDay : " + thisDay);
+
                 Intent intent = new Intent(MainActivity.this, AddIncomeActivity.class);
-                intent.putExtra("currentDate", currentDate);
+                Bundle extra = new Bundle();
+                extra.putString("thisDay", thisDay);
+                extra.putString("thisMonth", thisMonth);
+                extra.putString("thisYear", thisYear);
+                intent.putExtras(extra);
                 startActivity(intent);
+
             }
         });
 
@@ -84,10 +95,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
-                String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+
+                String thisYear = String.valueOf(calendar.get(Calendar.YEAR));
+                Log.d(thisYear, "thisYear : " + thisYear);
+
+                String thisMonth = String.valueOf(calendar.get(Calendar.MONTH) + 1);
+                Log.d(thisMonth, "thisMonth : " + thisMonth);
+
+                String thisDay = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+                Log.d(thisDay,"thisDay : " + thisDay);
 
                 Intent intent = new Intent(MainActivity.this, AddExpenseActivity.class);
-                intent.putExtra("currentDate", currentDate);
+                Bundle extra = new Bundle();
+                extra.putString("thisDay", thisDay);
+                extra.putString("thisMonth", thisMonth);
+                extra.putString("thisYear", thisYear);
+                intent.putExtras(extra);
                 startActivity(intent);
             }
         });
@@ -105,9 +128,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#ffffff"));
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new IncomeFragment(), "Income");
-//        viewPagerAdapter.addFragment(new BalanceFragment(),"Balance");
         viewPagerAdapter.addFragment(new ExpenseFragment(), "Expense");
-
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -123,8 +144,8 @@ public class MainActivity extends AppCompatActivity {
               String days = dayOfMonth + "";
               String years = year +"";
               Log.d(months,"onSelectedDayChange: MMM d, ''yyyy: " + months);
-                Log.d(days,"onSelectedDayChange: MMM d, ''yyyy: " + days);
-                Log.d(years,"onSelectedDayChange: MMM d, ''yyyy: " + years);
+              Log.d(days,"onSelectedDayChange: MMM d, ''yyyy: " + days);
+              Log.d(years,"onSelectedDayChange: MMM d, ''yyyy: " + years);
 
 
               Intent intent = new Intent(MainActivity.this, TransactionsActivity.class);
@@ -137,6 +158,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        todayExpenseH();
+        todayIncomeH();
 
         tvTodayRefreshH.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
         Date date = new Date();
         String today = formatter.format(date);
 
+
         ExpenseAPI expenseAPI = Url.getInstance().create(ExpenseAPI.class);
         Call<List<Expense>> listCall = expenseAPI.getByDays(Url.token,today);
         listCall.enqueue(new Callback<List<Expense>>() {
@@ -162,8 +186,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 List<Expense> expenseList = response.body();
-                ExpenseHomeAdapter expenseHomeAdapter = new ExpenseHomeAdapter(MainActivity.this, expenseList);
-                rvTodayHome.setAdapter(expenseHomeAdapter);
+                TodayExpenseHomeAdapter todayExpenseHomeAdapter = new TodayExpenseHomeAdapter(MainActivity.this, expenseList);
+                rvTodayHome.setAdapter(todayExpenseHomeAdapter);
                 rvTodayHome.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false));
             }
 
@@ -190,8 +214,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 List<Income> incomeList = response.body();
-                IncomeHomeAdapter incomeHomeAdapter = new IncomeHomeAdapter(MainActivity.this, incomeList);
-                rvTodayHomeI.setAdapter(incomeHomeAdapter);
+                TodayIncomeHomeAdapter todayIncomeHomeAdapter = new TodayIncomeHomeAdapter(MainActivity.this, incomeList);
+                rvTodayHomeI.setAdapter(todayIncomeHomeAdapter);
                 rvTodayHomeI.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false));
             }
 
