@@ -28,11 +28,11 @@ public class LoginInstrumentedTest {
     @Test
     public void checkUser(){
         onView(withId(R.id.etEmail))
-                .perform(typeText("roman@gmail.com"))
+                .perform(typeText("admin@gmail.com"))
                 .perform(closeSoftKeyboard());
 
         onView(withId(R.id.etPassword))
-                .perform(typeText("roman12345"))
+                .perform(typeText("admin12345"))
                 .perform(closeSoftKeyboard());
 
         onView(withId(R.id.btnLogin))

@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             startActivity(intent);
             finish();
         }else {
-            Toast.makeText(this, "Either Username or password is incorrect", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Email or password not matched", Toast.LENGTH_SHORT).show();
             etEmail.requestFocus();
         }
     }

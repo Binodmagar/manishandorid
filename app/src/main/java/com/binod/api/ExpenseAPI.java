@@ -13,6 +13,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ExpenseAPI {
@@ -28,4 +29,9 @@ public interface ExpenseAPI {
 
     @GET("/expenses/{days}")
     Call<List<Expense>> getByDays(@Header("Authorization") String token, @Path("days") String days);
+
+    @FormUrlEncoded
+    @PUT("/expenses/{id}")
+    Call<Expense> updateProduct(@Header("Authorization") String token, @Path("id")String expenseId, @Field("name") String name, @Field("amount") Integer amount, @Field("category") String category, @Field("account") String account,
+                                @Field("description") String description);
 }

@@ -60,36 +60,36 @@ public class AddExpenseActivity extends AppCompatActivity {
         etYearE = findViewById(R.id.etYearE);
 
         Bundle extra = getIntent().getExtras();
-        String thisDay = extra.getString("thisDay");
-        etDayE.setText(thisDay);
-        Log.d(thisDay,  "da" + etDayE);
-        String thisMonth = extra.getString("thisMonth");
-        etMonthE.setText(thisMonth);
-        String thisYear = extra.getString("thisYear");
-        etYearE.setText(thisYear);
-        allDate = thisDay + "-" + thisMonth + "-" + thisYear;
-        tvDateAE.setText(allDate);
-
-
-
-        //for incomming intent data
-        Bundle extras = getIntent().getExtras();
-
-        final String months = extras.getString("months");
-        if(thisMonth==null){
-            etMonthE.setText(months);
-        }
-
-        final String days = extras.getString("days");
-        if(thisDay==null){
-            etDayE.setText(days);
-        }
-
-        final String years = extras.getString("years");
-        if(thisYear==null){
-            etYearE.setText(years);
-        }
-        allDate = days + "-" + months + "-" + years;
+//        String thisDay = extra.getString("thisDay");
+//        etDayE.setText(thisDay);
+//        Log.d(thisDay,  "da" + etDayE);
+//        String thisMonth = extra.getString("thisMonth");
+//        etMonthE.setText(thisMonth);
+//        String thisYear = extra.getString("thisYear");
+//        etYearE.setText(thisYear);
+//        allDate = thisDay + "-" + thisMonth + "-" + thisYear;
+//        tvDateAE.setText(allDate);
+//
+//
+//
+//        //for incomming intent data
+//        Bundle extras = getIntent().getExtras();
+//
+//        final String months = extras.getString("months");
+//        if(thisMonth==null){
+//            etMonthE.setText(months);
+//        }
+//
+//        final String days = extras.getString("days");
+//        if(thisDay==null){
+//            etDayE.setText(days);
+//        }
+//
+//        final String years = extras.getString("years");
+//        if(thisYear==null){
+//            etYearE.setText(years);
+//        }
+//        allDate = days + "-" + months + "-" + years;
 
         //for setting up data in category
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, Expense);

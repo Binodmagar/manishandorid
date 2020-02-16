@@ -13,7 +13,7 @@ public class RegisterTesting {
     RegisterBLL registerBLL;
     @Before
     public void setUp(){
-        registerBLL = new RegisterBLL("john", "magar", "9898000123", "john@gmail.com","john12345","imageFile-1580640856878.png");
+        registerBLL = new RegisterBLL("john", "magar", "9898000123", "magarrana125522@gmail.com","john12345","imageFile-1580640856878.png");
 
     }
     @Test

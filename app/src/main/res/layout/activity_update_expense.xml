@@ -20,7 +20,7 @@
         android:layout_width="match_parent"/>
 
     <EditText
-        android:id="@+id/etNameAE"
+        android:id="@+id/etNameAEU"
         android:layout_width="359dp"
         android:layout_height="54dp"
         android:background="@drawable/edittext"
@@ -35,7 +35,7 @@
 
 
     <EditText
-        android:id="@+id/etAmountAE"
+        android:id="@+id/etAmountAEU"
         android:layout_width="359dp"
         android:layout_height="54dp"
         android:background="@drawable/edittext"
@@ -66,9 +66,8 @@
     <Spinner
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:id="@+id/spCategoryAE"
+        android:id="@+id/spCategoryAEU"
         android:layout_marginLeft="20dp"
-        android:popupBackground="@color/white"
         android:layout_marginRight="20dp"
         />
 
@@ -87,8 +86,7 @@
     <Spinner
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:id="@+id/spAccountAE"
-        android:popupBackground="@color/white"
+        android:id="@+id/spAccountAEU"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         />
@@ -106,7 +104,7 @@
         android:layout_height="12dp"/>
 
     <EditText
-        android:id="@+id/etNoteAE"
+        android:id="@+id/etNoteAEU"
         android:layout_width="359dp"
         android:layout_height="0dp"
         android:background="@drawable/addnote"
@@ -121,26 +119,9 @@
         android:layout_marginTop="32dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>
-
-
-<!--    <Button-->
-<!--        android:id="@+id/btnSaveExpense"-->
-<!--        android:text="Save"-->
-<!--      -->
-<!--        android:layout_marginTop="30dp"-->
-<!--        android:layout_marginBottom="15dp"-->
-<!--        android:layout_marginLeft="10dp"-->
-<!--        android:layout_marginRight="20dp"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="20sp"-->
-<!--        android:elevation="10dp"-->
-<!--        android:layout_gravity="bottom"-->
-<!--        android:background="@color/white"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"/>-->
     <Button
-        android:id="@+id/btnSaveAE"
-        android:text="Save"
+        android:id="@+id/btnSaveAEU"
+        android:text="Update"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="10dp"
@@ -148,7 +129,6 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:elevation="10dp"
-        android:visibility="invisible"
         android:layout_gravity="bottom"
         android:background="@color/white"
         android:layout_width="match_parent"

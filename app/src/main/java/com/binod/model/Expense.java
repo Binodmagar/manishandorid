@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import java.util.Date;
 
 public class Expense {
-
     private String name;
     private Integer amount;
     private String category;

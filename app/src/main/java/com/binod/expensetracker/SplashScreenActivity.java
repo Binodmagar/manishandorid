@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.binod.bll.LoginBLL;
 import com.binod.notification.NotificationChannel;
+import com.binod.sensor.ShakeSensors;
 import com.binod.strictmode.StrictModeClass;
 
 public class SplashScreenActivity extends AppCompatActivity {
@@ -44,12 +45,12 @@ public class SplashScreenActivity extends AppCompatActivity {
                 LoginBLL loginBLL = new LoginBLL();
                 StrictModeClass.StrictMode();
                 if (loginBLL.checkUser(email, password)) {
-                    Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                    Intent intent = new Intent(SplashScreenActivity.this, ShakeSensors.class);
                     DisplayNotification();
                     startActivity(intent);
                     finish();
                 } else {
-                    Intent intent1 = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                    Intent intent1 = new Intent(SplashScreenActivity.this, ShakeSensors.class);
                     startActivity(intent1);
                     Toast.makeText(SplashScreenActivity.this, "Email and password does not found", Toast.LENGTH_SHORT).show();
 

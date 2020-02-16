@@ -8,6 +8,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -48,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rvTodayHome, rvTodayHomeI;
     ImageView imgSetting;
 
+    private SensorManager sensorManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         rvTodayHome = findViewById(R.id.rvTodayHome);
         rvTodayHomeI = findViewById(R.id.rvTodayHomeI);
         tvTodayRefreshH = findViewById(R.id.tvTodayRefreshH);
+
+        sensorProximity();
 
         tvAddIncome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Expense>> call, Response<List<Expense>> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(MainActivity.this, "Code" + response.body(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "No data found" + response.body(), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 List<Expense> expenseList = response.body();
@@ -193,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Expense>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Errors" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "No data transaction", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -225,5 +233,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    public void sensorProximity(){
+        sensorManager=(SensorManager)MainActivity.this.getSystemService(SENSOR_SERVICE);
+
+        Sensor sensor=sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        SensorEventListener proxyListener=new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                if (event.values[0]<=1)
+                {
+                    Intent intent = new Intent(MainActivity.this, AddExpenseActivity.class);
+                    startActivity(intent);
+                }
+
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+            }
+        };
+
+        sensorManager.registerListener(proxyListener,sensor,SensorManager.SENSOR_DELAY_NORMAL);
     }
 }

@@ -19,7 +19,7 @@ public class LoginTokenTest  {
     @Test
     public void testToken(){
         UserAPI userAPI = Url.getInstance().create(UserAPI.class);
-        Call<SignUpResponse> call = userAPI.checkUser("roman@gmail.com","roman12345");
+        Call<SignUpResponse> call = userAPI.checkUser("admin@gmail.com","admin12345");
 
         try{
             Response<SignUpResponse> response = call.execute();

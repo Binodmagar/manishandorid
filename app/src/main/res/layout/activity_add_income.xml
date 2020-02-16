@@ -65,6 +65,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/spIncomeAI"
         android:layout_marginLeft="20dp"
+        android:popupBackground="@color/white"
         android:layout_marginRight="20dp"
         />
 
@@ -84,6 +85,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/spAccountAI"
+        android:popupBackground="@color/white"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         />

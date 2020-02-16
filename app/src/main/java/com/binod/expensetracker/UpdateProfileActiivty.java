@@ -57,6 +57,10 @@ public class UpdateProfileActiivty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile_actiivty);
 
+        notificationManagerCompat = NotificationManagerCompat.from(this);
+        NotificationChannel notificationChannel = new NotificationChannel(this);
+        notificationChannel.createChannel();
+
         imgProfileUP = findViewById(R.id.imgProfileUP);
         etFirstNameUP = findViewById(R.id.etFirstNameUP);
         etLastNameUP = findViewById(R.id.etLastNameUP);
@@ -90,8 +94,8 @@ public class UpdateProfileActiivty extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Logout();
-                Intent intent = new Intent(UpdateProfileActiivty.this, LoginActivity.class);
                 DisplayNotification();
+                Intent intent = new Intent(UpdateProfileActiivty.this, LoginActivity.class);
                 startActivity(intent);
 
             }
@@ -111,9 +115,9 @@ public class UpdateProfileActiivty extends AppCompatActivity {
                     Toast.makeText(UpdateProfileActiivty.this, "code", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                String imgPath = Url.imagePath + response.body().getImage();
-                Picasso.get().load(imgPath).into(imgProfileUP);
+//
+//                String imgPath = Url.imagePath + response.body().getImage();
+//                Picasso.get().load(imgPath).into(imgProfileUP);
 
                 String firstName = response.body().getFirstName();
                 etFirstNameUP.setText(firstName);
@@ -243,6 +247,7 @@ public class UpdateProfileActiivty extends AppCompatActivity {
         editor.putString("token", "");
         editor.putString("Email", "");
         editor.putString("Password","");
+
         editor.commit();
 
     }
